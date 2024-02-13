@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2024-02-12T11:32:50 IST" name="Default suite" finished-at="2024-02-12T11:33:11 IST" duration-ms="20382">
+    <groups>
+    </groups>
+    <test started-at="2024-02-12T11:32:50 IST" name="Default test" finished-at="2024-02-12T11:33:11 IST" duration-ms="20382">
+      <class name="com.automation.ezycomp.testcases.AuditTestCase">
+        <test-method is-config="true" signature="TestSuite()[pri:0, instance:com.automation.ezycomp.testcases.AuditTestCase@1349883]" started-at="2024-02-12T11:32:50 IST" name="TestSuite" finished-at="2024-02-12T11:32:50 IST" duration-ms="460" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TestSuite -->
+        <test-method is-config="true" signature="setup(java.lang.reflect.Method)[pri:0, instance:com.automation.ezycomp.testcases.AuditTestCase@1349883]" started-at="2024-02-12T11:32:50 IST" name="setup" finished-at="2024-02-12T11:32:55 IST" duration-ms="4648" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.automation.ezycomp.testcases.AuditTestCase.login() throws java.lang.InterruptedException,java.io.IOException]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="login()[pri:1, instance:com.automation.ezycomp.testcases.AuditTestCase@1349883]" started-at="2024-02-12T11:32:55 IST" name="login" finished-at="2024-02-12T11:33:10 IST" duration-ms="15324" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- login -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.automation.ezycomp.testcases.AuditTestCase@1349883]" started-at="2024-02-12T11:33:10 IST" name="tearDown" finished-at="2024-02-12T11:33:11 IST" duration-ms="357" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="endTestSuite()[pri:0, instance:com.automation.ezycomp.testcases.AuditTestCase@1349883]" started-at="2024-02-12T11:33:11 IST" name="endTestSuite" finished-at="2024-02-12T11:33:11 IST" duration-ms="391" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- endTestSuite -->
+      </class> <!-- com.automation.ezycomp.testcases.AuditTestCase -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
