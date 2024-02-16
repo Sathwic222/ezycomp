@@ -8,8 +8,8 @@ import org.openqa.selenium.support.PageFactory;
 import com.automation.ezycomp.base.TestBase;
 
 public class act  extends TestBase{
-	Common_methods
 	HomePage_SuperAdmin home;
+
 	
 	@FindBy(xpath = "//body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]")
     WebElement Type;
