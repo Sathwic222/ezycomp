@@ -1,337 +1,300 @@
 package com.automation.ezycomp.pageobjects;
 
+
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.Select;
-
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.time.Duration;
 import com.automation.ezycomp.base.TestBase;
 
+
 public class HomePage_SuperAdmin extends TestBase {
-	
+
 	@FindBy(xpath = ".//h4[text()='Home']")
-    WebElement Homepage;
-	
-//	manage users
-	
-	@FindBy(xpath=".//span[@class='icon icon-double-right  px-3 px-2 ']")
-	WebElement Arroww;
-	
-	@FindBy(xpath=".//span[text()='User Management']")
-	WebElement UserManagement;
-	
-	
-	@FindBy(xpath=".//span[text()='Manage Users']")
-	WebElement ManageUsers;
-	
-	@FindBy(xpath=".//button[@class='px-3 ms-auto text-nowrap btn btn-primary']")
-	WebElement AddNewbutton;
-	
-	@FindBy(xpath=".//input[@name='name']")
-	WebElement FullName;
-	
-	@FindBy(xpath=".//input[@name='userName']")
-	WebElement Username;
-	
-	@FindBy(xpath=".//input[@name='email']")
-	WebElement Email;
-	
-	@FindBy(xpath=".//input[@name='role']")
-	WebElement Role;
-	
-	//.//div[text()='Select Role']
-	
-	//(.//div[@class=" css-13cymwt-control"])[3]
-	
-	@FindBy(xpath=".//input[@name='email']")
-	WebElement SubmitButton;
-	
-	@FindBy(xpath=".//button[@class='px-3 text-nowrap me-3 btn btn-primary']")
-	WebElement export;
-	
-	@FindBy(xpath=".//div[@class='input-group']/input")
-	WebElement search_input;
-	
-	@FindBy(xpath="(.//div[@class=' css-19bb58m'])[1]")
-	WebElement dropdown;
-	
-	@FindBy(xpath = ".//a[contains(text(),'Home')]")
-	WebElement homebtn;
-	
-	@FindBy(xpath=".//div[contains(text(),'created successfully')]")
-	WebElement sucess;
-	
-	@FindBy(xpath="(.//div[text()='tillu'])[1]")
-	WebElement tillu;
-	
-//	company mapping
-	
-	@FindBy(xpath=".//span[text()='Company Mapping']")
-	WebElement U_companymapping;
-	
-	@FindBy(xpath=".//div[@class = ' css-13cymwt-control']")
-	WebElement U_role_dd;
-	
-	@FindBy(xpath=".//button[@class = 'px-4 ms-auto text-nowrap btn btn-primary']")
-	WebElement U_add_user_location;
-	
-	@FindBy(xpath="(.//div[@class = ' css-19bb58m'])[2]")
-	WebElement U_company_dd;
-	
-	@FindBy(xpath="(.//div[@class = ' css-19bb58m'])[3]")
-	WebElement U_ass_company_dd;
-	
-//	email templates
-	
-	@FindBy(xpath=".//span[text()='Email & Notifications']")
-	WebElement Email_Notification;
-	
-	@FindBy(xpath=".//span[text()='Email Templates']")
-	WebElement email_templates;
-	
-	@FindBy(xpath=".//button[@class='px-3 ms-auto text-nowrap btn btn-primary']")
-	WebElement E_addnew;
-	
-	@FindBy(xpath="(.//div[@class=' css-13cymwt-control'])[1]")
-	WebElement E_Template;
-	
-	@FindBy(xpath="(.//div[@class=' css-19bb58m'])[2]")
-	WebElement E_company;
-	
-	@FindBy(xpath=".//textarea[@name='subject']")
-	WebElement E_subject;
-	
-	@FindBy(xpath=".//input[@name='emailCC']")
-	WebElement E_email_cc;
-	
-	@FindBy(xpath="(.//div[@class='ql-editor ql-blank'])[1]")
-	WebElement E_emailbody;
-	
-	@FindBy(xpath="(.//div[@class='ql-editor ql-blank'])[2]")
-	WebElement E_signature;
-	
-	@FindBy(xpath=".//button[@class='px-4 ms-3 btn btn-primary']")
-	WebElement E_create;
-	
-	@FindBy(xpath=".//div[contains(text(),'added successfully')]")
-	WebElement E_added_sucessfully;
-	
-//	Audit schedule details
-	
-	@FindBy(xpath=".//span[text()='Audit Management']")
-	WebElement A_audit;
-	
-	@FindBy(xpath=".//span[text()='Audit Schedule Details']")
-	WebElement A_Audit_SD;
-	
-	@FindBy(xpath="(.//div[@class=' css-19bb58m'])[1]")
-	WebElement A_company;
-	
-	@FindBy(xpath="(.//div[@class=' css-19bb58m'])[2]")
-	WebElement A_ass_company;
-	
-	@FindBy(xpath="(.//div[@class=' css-19bb58m'])[3]")
-	WebElement A_location;
-	
-	@FindBy(xpath=".//span[text()='Advance Search']")
-	WebElement A_advance_search;
-	
-	@FindBy(xpath=".//input[@name='monthYear']")
-	WebElement A_monthyear;
-	
-	@FindBy(xpath=".//span[text()='August']")
-	WebElement A_month;
-	
-	@FindBy(xpath=".//input[@name='dueDate']")
-	WebElement A_duedate;
-	
-	@FindBy(xpath=".//span[text()='21']")
-	WebElement A_date;
-	
-	@FindBy(xpath="(.//div[@class=' css-19bb58m'])[5]")
-	WebElement A_activity;
-	
-	@FindBy(xpath="(.//div[@class=' css-19bb58m'])[6]")
-	WebElement A_Audit;
-	
-	@FindBy(xpath=".//button[text()='Submit']")
-	WebElement A_submit;
-	
-	
-	
-	
-	
-	
-	
-	
-	
-//	for manage users
-	public HomePage_SuperAdmin() {
-		PageFactory.initElements(driver, this);
+	WebElement Homepage;
+
+	@FindBy(xpath = "//span[@title='double-right']//*[name()='svg']")
+	WebElement NavOpen;
+
+	@FindBy(xpath = "//span[@title='double-left']//*[name()='svg']")
+	WebElement Navhide;
+
+	@FindBy(xpath = "//a[@href='/masters/act']")
+	WebElement Master;
+
+	@FindBy(xpath = "//a[@href='/masters/law']//span")
+	WebElement Law;
+
+	@FindBy(xpath = "//span[normalize-space()='Act']")
+	WebElement acts;
+
+	@FindBy(xpath = "//span[normalize-space()='Activity']")
+	WebElement Activity;
+
+	@FindBy(xpath = "//span[normalize-space()='Rule']")
+	WebElement Rule;
+
+	@FindBy(xpath = "//span[normalize-space()='State']")
+	WebElement State;
+
+
+	public WebElement Menu(String value) {
+		return driver.findElement(By.xpath("//span[normalize-space()='"+value+"']"));
 	}
-	
+
+	@FindBy(xpath = "//button[normalize-space()='Add New']")
+	WebElement Addnew;
+
+	@FindBy(xpath = "//input[@placeholder='Enter Law Name']")
+	WebElement Lawname;
+
+	@FindBy(xpath = "//textarea[@placeholder='Enter Description']")
+	WebElement Description;
+
+	@FindBy(xpath = "//button[normalize-space()='Submit']")
+	WebElement Submit;
+
+	@FindBy(xpath = "//button[normalize-space()='Close']")
+	WebElement Close;
+
+	@FindBy(xpath = "//button[normalize-space()='Yes']")
+	public WebElement Yes;
+
+	@FindBy(xpath = "//div[contains(text(),'created successfully')]")public
+	WebElement Success;
+
+	@FindBy(xpath = "//div[@class='input-group']/input")
+	WebElement Search_Input;
+
+
+
+
+
+
+	@FindBy(xpath = "//body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]")
+	WebElement Type;
+
+	@FindBy(xpath = "//div[contains(text(),'already exists')]")
+	public
+	WebElement Duplicate;
+
+	@FindBy(xpath = "//div[contains(text(),'updated successfully.')]")
+	public WebElement UpdateSuccess;
+
+//	 public WebElement Wait(WebElement Xpath) {
+//		 Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+//		    wait.until(d -> Xpath.isDisplayed());
+//
+//	    }
+
+	public WebElement waitForElement(WebElement Xpath) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		//return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+		wait.until(d -> Xpath.isDisplayed());
+		return Xpath;
+	}
+
+	public void scrollIntoView(WebElement Xpath) {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView(true);",  new Object[] { Xpath});
+	}
+
+	public WebElement Show(String value) {
+		return driver.findElement(By.xpath("//span[contains(text(),'"+value+"')]"));
+	}
+
+	public WebElement Page(String value) {
+		return driver.findElement(By.xpath("//span[@title='"+value+"']"));
+	}
+
+	public WebElement Searchvalue(String value) {
+		return driver.findElement(By.xpath("//div[contains(text(),'"+value+"')]"));
+	}
+
+	public WebElement DropDownValue(String value) {
+		return driver.findElement(By.xpath("//div[contains(@id,'listbox')]//div[contains(text(),'"+value+"')]"));
+	}
+
+	public WebElement ActionsEdit(String value) {
+		return driver.findElement(By.xpath("//div[text()='"+value+"']/../../..//span[@title='Edit']"));
+	}
+
+	public WebElement ActionsView(String value) {
+		return driver.findElement(By.xpath("//div[text()='"+value+"']/../../..//span[@title='View']"));
+	}
+
+	public WebElement ActionsDelete(String value) {
+		return driver.findElement(By.xpath("//div[text()='"+value+"']/../../..//span[@title='Delete']"));
+	}
+
+	public WebElement ActionsViewDisplay(String value) {
+		return driver.findElement(By.xpath("//div[@class='modal-body']/../../..//div[contains(text(),'"+value+"')]"));
+	}
+
+	public WebElement Button(String value) {
+		return driver.findElement(By.xpath("//button[normalize-space()='"+value+"']"));
+	}
+
+//	public WebElement Input(String value) {
+//		return driver.findElement(By.xpath("//input[@placeholder='"+value+"']\""));
+//	}
+
+
+
+
+	public HomePage_SuperAdmin() throws InterruptedException {
+		PageFactory.initElements(driver, this);
+		waitForElement(Homepage);
+		NavOpen.click();
+	}
+
 	public boolean homePageVerfication() {
-		
+
 		return Homepage.isDisplayed();
 	}
-	
-	public void Arrow() {
-		Arroww.click();
-	}
-		
-	public void UserManagements() {
-		UserManagement.click();
-	}
-	
-	public void ManageUser() {
-		ManageUsers.click();
-	}
-	
 
-	public void AddNewBtn() {
-		AddNewbutton.click();
-	}
-	
-	public void Addingdetails(String fullname,String username, String email) {
-		FullName.sendKeys(fullname);
-		Username.sendKeys(username);
-		Email.sendKeys(email);
-	}
-	
-	public void Rolefield(String value) {
-		//Role.click();
-		Role.sendKeys(value);
-//		Select dropdown = new Select(Role);
-//		dropdown.selectByVisibleText(value);
-	}
-	
-	public void Submitbtn() {
-		SubmitButton.click();
-	}
-	
-	public void exportbtn() {
-		export.click();
-	}
-	
-	public void search(String value) {
-		search_input.sendKeys(value);
-	}
-	
-	public void dropdowns(){
-		dropdown.click();
-	}
-	public void dropdowns1(String value) {
-		dropdown.sendKeys(value);
-		dropdown.sendKeys(Keys.ENTER);
+	public void NavArrowopen() {
+		NavOpen.click();
 	}
 
-	
-	public void home() {
-		homebtn.click();
-		}
-	
-	public boolean createdsucces() {
-		return sucess.isDisplayed();
+	public void Masters() {
+		Master.click();
 	}
-	
-	public boolean tilluname() {
-		return tillu.isDisplayed();
-	}
-	
-	public void tillunames() {
-		tillu.click();
-	}
-	
-	
 
-//	company mapping
-	
-	public void Company_mapping() {
-		U_companymapping.click();
+	public void Lawopen() {
+		Law.click();
 	}
-	
-	public void Role_dropdown(String value) {
-		U_role_dd.sendKeys(value);
-		U_role_dd.sendKeys(Keys.ENTER);
-	}
-	
-	public void Add_location() {
-		U_add_user_location.click();
-	}
-	
-	public void company(String value) {
-		U_company_dd.sendKeys(value);
-		U_company_dd.sendKeys(Keys.ENTER);
-	}
-	
-	public void Ass_company(String value) {
-		U_ass_company_dd.sendKeys(value);
-		U_ass_company_dd.sendKeys(Keys.ENTER);
-	}
-	
-//	email templates
-	
-	public void emailNotifications() {
-		Email_Notification.click();
-	}
-	
-	public void email_temp() {
-		email_templates.click();
-	}
-	
-	public void AddNew_button() {
-		E_addnew.click();
-	}
-	
-	public void Template_type(String value){
-		E_Template.sendKeys(value);
-		E_Template.sendKeys(Keys.ENTER);
-	}
-	
-	public void email_company(String value) {
-		E_company.sendKeys(value);
-		E_company.sendKeys(Keys.ENTER);
-	}
-	
-	public void Email_subject(String value) {
-		E_subject.sendKeys(value);
-	}
-	
-	public void Email_cc(String value) {
-		E_email_cc.sendKeys(value);
-	}
-	
-	public void Email_body(String value) {
-		E_emailbody.sendKeys(value);
-	}
-	
-	public void Email_signature(String value) {
-		E_signature.sendKeys(value);
-	}
-	
-	public void create() {
-		E_create.click();
-	}
-	
-	public boolean added_sucessfully() {
-		return sucess.isDisplayed();
-	}	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
-		
-    
-	
-	
-	
+	public void act() {
+		acts.click();
+	}
+
+	public void Activity() {
+		Activity.click();
+	}
+
+	public void Rule() {
+		Rule.click();
+	}
+
+
+
+	public void NavArrowclose() {
+		Navhide.click();
+	}
+
+
+	public void AddNewButton() {
+		Addnew.click();
+	}
+
+	public String Law(String username,String password) {
+		Lawname.sendKeys(username);
+		Description.sendKeys(password);
+		return username;
+	}
+	public void Submit() {
+		Submit.click();
+	}
+
+	public void Close() {
+		Close.click();
+	}
+
+	public void Yes() {
+		Yes.click();
+	}
+
+	public boolean SubmitDisabled() {
+		return Submit.isEnabled();
+	}
+	public boolean CreatedSucees() {
+		return Success.isDisplayed();
+	}
+	public boolean AlreadyExixts() {
+		return Duplicate.isDisplayed();
+	}
+
+	public boolean Update() {
+		return UpdateSuccess.isDisplayed();
+	}
+
+	public void Search(String value) {
+		Search_Input.sendKeys(value);
+	}
+
+	public void SearchClear() {
+		Search_Input.clear();;
+	}
+
+
+	public boolean Search_value(String value) {
+		return Searchvalue(value).isDisplayed();
+	}
+
+	public boolean ActionsViewDisplayed(String value) {
+		return ActionsViewDisplay(value).isDisplayed();
+	}
+
+	public void Dropdown(String value) {
+		DropDownValue(value).click();
+	}
+
+	public void State() {
+		State.click();
+	}
+
+	public void Establishment(String value, Keys enter) throws InterruptedException {
+		Type.click();
+		Thread.sleep(2000);
+		Type.sendKeys(value);
+	}
+
+	public void NAvMenu(String value) {
+		Menu(value).click();
+	}
+
+	public void Edit(String value) {
+		ActionsEdit(value).click();
+	}
+
+	public void View(String value) {
+		ActionsView(value).click();
+	}
+
+	public void Delete(String value) {
+		ActionsDelete(value).click();
+	}
+
+	public void NameEdit(String username) {
+		Description.sendKeys(username);
+	}
+
+	public void ButtonYes(String value) {
+		Button(value).click();
+	}
+
+	public void Pagination(String value) {
+		Page(value).click();
+	}
+
+	public boolean Pageshowing(String value) {
+		return Show(value).isDisplayed();
+	}
+
+
+//	  public void InputValue(String value, String name) {
+//		  Input(value).sendKeys(name);
+//		 }
+
+
+
+
+
 
 }

@@ -36,7 +36,7 @@ public class LoginPageTest extends TestBase {
 		driver.manage().window().maximize();
 		
 	}
-	@Test(priority=1)
+	@Test
 	 public void login() throws InterruptedException, IOException {
 		try {
 			loginpage = new LoginPage();
