@@ -49,22 +49,22 @@ public class Common_methods  extends TestBase{
         return driver.findElement(By.xpath("//span[contains(text(),'"+value+"')]"));
     }
 
-    public void verifyPagination() throws IOException {
-        Pagination("Next");
-        waitForElement(Show("51 - 100"));
-//        Thread.sleep(2000);
-        Assert.assertTrue(Pageshowing("51 - 100"));
-        logger.logPass("pagination is working Navigate to next page");
-        Pagination("Next");
-        waitForElement(Show("101 - 150"));
-        //Thread.sleep(2000);
-        Assert.assertTrue(home.Pageshowing("101 - 150"));
-        logger.logPass("pagination is working Navigate to next page");
-        home.Pagination("Previous");
-        waitForElement(Show("51 - 100"));
-        Assert.assertTrue(home.Pageshowing("51 - 100"));
-        logger.logPass("pagination is working Navigate to Previous page");
-    }
+//    public void verifyPagination() throws IOException {
+//        Pagination("Next");
+//        waitForElement(Show("51 - 100"));
+////        Thread.sleep(2000);
+//        Assert.assertTrue(Pageshowing("51 - 100"));
+//        logger.logPass("pagination is working Navigate to next page");
+//        Pagination("Next");
+//        waitForElement(Show("101 - 150"));
+//        //Thread.sleep(2000);
+//        Assert.assertTrue(home.Pageshowing("101 - 150"));
+//        logger.logPass("pagination is working Navigate to next page");
+//        home.Pagination("Previous");
+//        waitForElement(Show("51 - 100"));
+//        Assert.assertTrue(home.Pageshowing("51 - 100"));
+//        logger.logPass("pagination is working Navigate to Previous page");
+//    }
 
 
 

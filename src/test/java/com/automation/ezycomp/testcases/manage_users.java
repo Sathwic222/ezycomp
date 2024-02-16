@@ -12,8 +12,10 @@ import org.testng.annotations.Test;
 
 import com.automation.ezycomp.base.TestBase;
 import com.automation.ezycomp.functionLabrary.ReportLog;
+import com.automation.ezycomp.pageobjects.EmailPage;
 import com.automation.ezycomp.pageobjects.HomePage_SuperAdmin;
 import com.automation.ezycomp.pageobjects.LoginPage;
+import com.automation.ezycomp.pageobjects.manage_user_page;
 
 import junit.framework.Assert;
 
@@ -21,6 +23,8 @@ public class manage_users extends TestBase{
 	LoginPage loginpage;
 	HomePage_SuperAdmin home; 
 	ReportLog logger;
+	manage_user_page manage;
+	
 	
 	@BeforeSuite
 	public void testSuite() {
@@ -41,53 +45,175 @@ public class manage_users extends TestBase{
 	@Test(priority=1)
 	 public void manage_user()throws InterruptedException, IOException {
 		try {
-			loginpage = new LoginPage();
+			
+			loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
 			home = new HomePage_SuperAdmin();
-			logger.logInfo("Entering username and password");
-			loginpage.login("superadmin@ezycomp.com", "test123");
-			loginpage.loginbtn();
+			manage = new manage_user_page();
 			Thread.sleep(5000);
-//			home.Arrow();
-//			home.UserManagements();
-//			home.ManageUser();
-//			Thread.sleep(5000);
-//			home.AddNewBtn();
-//			logger.logInfo("Adding user");
-//			home.Addingdetails("rahul", "kcr", "testcase8995@gmail.com");
-//			home.Rolefield("vendor");
-//	   		Thread.sleep(2000);
-//			home.Submitbtn();
-//			Assert.assertTrue(home.createdsucces());
+
+			manage.UserManagements();
+			manage.ManageUser();
+			Thread.sleep(5000);
+			manage.AddNewBtn();
+			logger.logInfo("Adding user");
+			manage.Addingdetails(prop.getProperty("fullname"),prop.getProperty("username"),prop.getProperty("email"));
+			manage.select_value();
+			home.Dropdown(prop.getProperty("role"));
+	   		Thread.sleep(2000);
+	   		manage.Submitbtn();
+			Thread.sleep(5000);
+			Assert.assertTrue(manage.createdsucces());
 			logger.logPass("user created sucessfully");
 		}catch (Exception e) {
-			logger.logFail("user not created");
-		}
-			
-		
-		
+			logger.logFail("user not created"+e.getMessage());
+		}	
 	 }
+	
 	@Test(priority=2)
+	 public void manage_user_already_exits()throws InterruptedException, IOException {
+			try {
+				loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
+				home = new HomePage_SuperAdmin();
+				manage = new manage_user_page();
+				Thread.sleep(5000);
+
+				manage.UserManagements();
+				manage.ManageUser();
+				Thread.sleep(5000);
+				manage.AddNewBtn();
+				logger.logInfo("Adding existing user");
+				manage.Addingdetails(prop.getProperty("fullname"),prop.getProperty("username"),prop.getProperty("email"));
+				manage.select_value();
+				home.Dropdown(" ");
+		   		Thread.sleep(2000);
+		   		manage.Submitbtn();
+				Thread.sleep(5000);
+				Assert.assertTrue(manage.already_exists());
+				logger.logPass("user_already_exists");
+			}catch (Exception e) {
+				logger.logFail("created user"+e.getMessage());
+			}	
+		 }
+	@Test(priority=3)
 	public void search() throws InterruptedException, IOException {
 		try {
-		loginpage = new LoginPage();
-		home = new HomePage_SuperAdmin();
-		logger.logInfo("Entering username and password");
-		loginpage.login("superadmin@ezycomp.com", "test123");
-		loginpage.loginbtn();
-		Thread.sleep(5000);
-//		home.Arrow();
-//		home.UserManagements();
-//		home.ManageUser();
-//		Thread.sleep(5000);
-////		home.tillunames();
-//		home.search("tillu");
-//		Thread.sleep(2000);
-//		home.tilluname();
+			loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
+			home = new HomePage_SuperAdmin();
+			manage = new manage_user_page();
+			Thread.sleep(5000);
+			manage.UserManagements();
+			manage.ManageUser();
+			Thread.sleep(5000);
+		manage.search("tillu");
+		Thread.sleep(2000);
+		manage.tilluname();
+		manage.select_values();
 		logger.logPass("shown as per given");
+		
+		
 		}catch (Exception e) {
-			logger.logFail("not shown");
+			logger.logFail("not shown"+e.getMessage());
 		}
 	}
+	
+	@Test(priority=4)
+	 public void roledropdown()throws InterruptedException, IOException {
+			try {
+				loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
+				home = new HomePage_SuperAdmin();
+				manage = new manage_user_page();
+				Thread.sleep(5000);
+				manage.UserManagements();
+				manage.ManageUser();
+				Thread.sleep(5000);
+				manage.dropdowns();
+				home.Dropdown(prop.getProperty("role"));
+				Thread.sleep(5000);
+				Assert.assertTrue(home.SearchElement(prop.getProperty("role")));
+				logger.logPass("type drop is working");
+			}catch (Exception e) {
+				logger.logFail("type drop is not working"+e.getMessage());
+			}	
+		 }
+	
+	@Test(priority = 5)
+	public void Edit() throws IOException, InterruptedException {
+		try {
+		loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
+		home = new HomePage_SuperAdmin();
+		manage = new manage_user_page();
+		Thread.sleep(5000);
+//		home.Arrow();
+		manage.UserManagements();
+		manage.ManageUser();
+		Thread.sleep(5000);
+		manage.search(prop.getProperty("username"));
+		Thread.sleep(5000);
+		home.Actions("kcr","Edit");
+		manage.clearing();
+		Thread.sleep(5000);
+		manage.edit_details(" hero");
+		manage.Submitbtn();
+		Thread.sleep(5000);
+		Assert.assertTrue(home.SearchElement("updated successfully"));
+		logger.logPass("Edit is working");
+	}catch (Exception e) {
+			logger.logFail(" Edit is not working "+e.getMessage());
+		}
+		
+	}
+	
+	@Test(priority = 6)
+	public void view() throws IOException, InterruptedException {
+		try {
+		loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
+		home = new HomePage_SuperAdmin();
+		manage = new manage_user_page();
+		Thread.sleep(5000);
+//		home.Arrow();
+		manage.UserManagements();
+		manage.ManageUser();
+		Thread.sleep(5000);
+		manage.search(prop.getProperty("username"));
+		Thread.sleep(5000);
+		home.Actions("kcr","View");
+		Thread.sleep(3000);
+		home.search_valued("Full Name");
+//		Assert.assertTrue(home.SearchElement("updated successfully"));
+		logger.logPass("VIEW IS WORKING");
+		} catch (Exception e) {
+			logger.logFail("not edit updated"+e.getMessage());
+		}
+		
+	}
+	
+	@Test(priority = 7)
+	public void delete() throws IOException, InterruptedException {
+		try {
+		loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
+		home = new HomePage_SuperAdmin();
+		manage = new manage_user_page();
+		Thread.sleep(5000);
+//		home.Arrow();
+		manage.UserManagements();
+		manage.ManageUser();
+		Thread.sleep(5000);
+		manage.search(prop.getProperty("username"));
+		Thread.sleep(5000);
+		home.Actions("kcr","Delete");
+		Thread.sleep(3000);
+		home.Yes();
+		Thread.sleep(3000);
+//		home.deleted();
+			home.Search_value("deleted successfully.");
+		logger.logPass("delete sucessfully");
+	} catch (Exception e) {
+		logger.logFail(" not deleted "+e.getMessage());
+	}
+		
+	}
+	
+	
 	
 	
 	

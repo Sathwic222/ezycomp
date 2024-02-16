@@ -287,10 +287,38 @@ public class HomePage_SuperAdmin extends TestBase {
 		return Show(value).isDisplayed();
 	}
 
+	public WebElement Action(String value,String Text) {
+		return driver.findElement(By.xpath("//div[text()='"+value+"']/../../..//span[@title='"+Text+"']"));
+	}
+
+	public void Actions(String value,String Text) {
+		Action(value, Text).click();
+	}
 
 //	  public void InputValue(String value, String name) {
 //		  Input(value).sendKeys(name);
 //		 }
+
+
+
+	public boolean SearchElement(String value) {
+		return Searchvalue(value).isDisplayed();
+	}
+
+	public WebElement view_text(String value) {
+		return driver.findElement(By.xpath(".//label[contains(text(),'"+value+"')]"));
+	}
+
+	public void search_valued(String value) {
+		view_text(value).isDisplayed();
+	}
+
+	@FindBy(xpath=".//div[contains(text(),'successfully')]")
+	WebElement updated_sucessfully;
+
+	public void updated() {
+		updated_sucessfully.isDisplayed();
+	}
 
 
 
