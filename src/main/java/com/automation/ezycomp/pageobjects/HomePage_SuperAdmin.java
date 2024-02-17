@@ -321,8 +321,12 @@ public class HomePage_SuperAdmin extends TestBase {
 	}
 
 
+	public void ActionsAdd(String value) throws InterruptedException {
+		ActionsButtonAdd(value).click();
+	}
 
-
-
+	public WebElement ActionsButtonAdd(String value) {
+		return driver.findElement(By.xpath(".//span[contains(text(),'"+value+"')]"));
+	}
 
 }

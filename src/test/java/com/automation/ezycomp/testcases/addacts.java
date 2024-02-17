@@ -76,7 +76,7 @@ public class addacts extends TestBase {
 			home.act();
 			home.NavArrowclose();
 			actss.ActionClick();
-			actss.ActionsAdd();
+			home.ActionsAdd("Add New");
 			actss.EnterActName(prop.getProperty("EnterActNameInput"));
 			actss.TypeClick();
 			home.Dropdown(prop.getProperty("Estblishmenttypevalue"));
