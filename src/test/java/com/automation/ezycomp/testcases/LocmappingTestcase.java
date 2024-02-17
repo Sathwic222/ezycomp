@@ -40,14 +40,11 @@ public class LocmappingTestcase extends TestBase {
 	@Test(priority=1)
 	 public void login() throws InterruptedException, IOException {
 		try {
-			loginpage = new LoginPage();
+			loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
 			home = new HomePage_SuperAdmin();
 			loginpage = new LoginPage();
 			mapping= new Locationmapping();
 			logger.logInfo("Entering username and password");
-			loginpage.login("superadmin@ezycomp.com", "test123");
-			loginpage.loginbtn();
-			Thread.sleep(5000);
 			mapping.Homepage();
 			mapping.NavDoubleright();
 			mapping.Companieslist();
