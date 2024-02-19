@@ -72,7 +72,7 @@ public class Notification_Testcases extends TestBase{
 		}	
 	}
 	
-	@Test (priority = 1)
+	@Test (priority = 2)
 	public void Adding_notifications_already_exists() throws InterruptedException, IOException {
 		try {
 		loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
@@ -103,7 +103,7 @@ public class Notification_Testcases extends TestBase{
 	}
 	
 	
-	@Test(priority = 2)
+	@Test(priority = 3)
 	public void Template_DD() throws InterruptedException, IOException{
 		try {
 		loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
@@ -126,7 +126,7 @@ public class Notification_Testcases extends TestBase{
 	}
 
 	
-	@Test(priority = 3)
+	@Test(priority = 4)
 	public void Company_DD() throws InterruptedException, IOException{
 		try {
 		loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
@@ -148,7 +148,7 @@ public class Notification_Testcases extends TestBase{
 		logger.logFail(" dropdown not working "+e.getMessage());
 	}
 	}
-	@Test(priority = 4)
+	@Test(priority = 5)
 	public void Edit() throws IOException {
 		try {
 			loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
@@ -174,7 +174,7 @@ public class Notification_Testcases extends TestBase{
 			logger.logFail(" edit not updated"+e.getMessage());
 	}
 }
-	@Test(priority = 5)
+	@Test(priority = 6)
 	public void View() throws IOException {
 		try {
 			loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
@@ -196,7 +196,7 @@ public class Notification_Testcases extends TestBase{
 			logger.logFail(" View not responding "+e.getMessage());
 	}
 }
-	@Test(priority = 6)
+	@Test(priority = 7)
 	public void Delete() throws IOException {
 		try {
 			loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
