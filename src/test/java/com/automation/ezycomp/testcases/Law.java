@@ -3,6 +3,8 @@ package com.automation.ezycomp.testcases;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
+import com.automation.ezycomp.pageobjects.act;
+import com.automation.ezycomp.utils.ExcelOperations;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
@@ -184,6 +186,27 @@ public class Law extends TestBase {
 			Thread.sleep(2000);
 			Assert.assertTrue(home.Search_value("deleted successfully."));
 			logger.logPass("Law Page : Delete is working ");
+		} catch (Exception e) {
+			logger.logFail("An exception occurred:"+e.getMessage());
+		}
+	}
+	@Test(priority=8)
+	public void ExportExcel() throws InterruptedException, IOException {
+		try {
+			loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
+			home = new HomePage_SuperAdmin();
+			//actss = new act();
+			home.NAvMenu("Masters");
+			home.NAvMenu("Law Category");
+			home.NavArrowclose();
+			home.ExportButton();
+			Thread.sleep(9000);
+			ExcelOperations ex = new ExcelOperations(System.getProperty("user.dir") + "\\externalFiles\\downloadFiles\\Laws.xlsx");
+			String sheetName = "Laws";
+			int rowcount = ex.getRowcount(sheetName);
+			int colcount = ex.getColcount(sheetName);
+			Assert.assertEquals("Count Matching", home.Showing(),rowcount);
+			logger.logPass("Law Page : Export is working and count is matching ");
 		} catch (Exception e) {
 			logger.logFail("An exception occurred:"+e.getMessage());
 		}

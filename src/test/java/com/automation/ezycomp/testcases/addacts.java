@@ -269,23 +269,21 @@ public class addacts extends TestBase {
 			loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
 			home = new HomePage_SuperAdmin();
 			actss = new act();
-			home.Masters();
+			home.NAvMenu("Masters");
 			home.act();
 			home.NavArrowclose();
 			actss.ActionClick();
 			actss.ActionsButton("Export");
+			Thread.sleep(5000);
 			ExcelOperations ex = new ExcelOperations(System.getProperty("user.dir") + "\\externalFiles\\downloadFiles\\Acts.xlsx");
-
 			String sheetName = "Acts";
 			int rowcount = ex.getRowcount(sheetName);
 			int colcount = ex.getColcount(sheetName);
-
-
-
+			Assert.assertEquals("Count Matching", home.Showing(),rowcount);
+			Thread.sleep(5000);
 		} catch (Exception e) {
 			logger.logFail("An exception occurred:"+e.getMessage());
 		}
-
 	}
 	
 //	@Test(priority=3)

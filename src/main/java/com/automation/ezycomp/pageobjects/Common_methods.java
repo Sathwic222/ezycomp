@@ -27,6 +27,9 @@ public class Common_methods  extends TestBase{
     @FindBy(xpath=".//input[@id='react-select-2-input']")
     WebElement TypeDropdown;
 
+    @FindBy(xpath="//div[@class='custom-tabulator-footer d-flex justify-content-between align-items-center w-100 undefined']//span[contains(text(),'Showing')]")
+    WebElement Showing;
+
     public WebElement Page(String value) {
         return driver.findElement(By.xpath("//span[@title='"+value+"']"));
     }
@@ -66,7 +69,7 @@ public class Common_methods  extends TestBase{
 //        logger.logPass("pagination is working Navigate to Previous page");
 //    }
 
-
+//div[@class='custom-tabulator-footer d-flex justify-content-between align-items-center w-100 undefined']//span[contains(text(),'Showing')]
 
     public void Choosefile(String Path) throws InterruptedException {
         ((JavascriptExecutor) driver).executeScript("document.getElementByClassName('form-control is-valid').setAttribute('Value', Path)");

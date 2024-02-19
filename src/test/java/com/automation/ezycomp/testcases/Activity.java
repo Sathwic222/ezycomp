@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 
 //import org.openqa.selenium.Keys;
+import com.automation.ezycomp.utils.ExcelOperations;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
@@ -272,6 +273,29 @@ public class Activity extends TestBase {
 		} catch (Exception e) {
 			logger.logFail("An exception occurred:"+e.getMessage());
 		}	
+	}
+
+	@Test(priority=10)
+	public void ExportExcel() throws InterruptedException, IOException {
+		try {
+			loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
+			home = new HomePage_SuperAdmin();
+			actss = new act();
+			home.NAvMenu("Masters");
+			home.NAvMenu("Activity");
+			home.NavArrowclose();
+			actss.ActionClick();
+			actss.ActionsButton("Export");
+			Thread.sleep(5000);
+			ExcelOperations ex = new ExcelOperations(System.getProperty("user.dir") + "\\externalFiles\\downloadFiles\\Activities.xlsx");
+			String sheetName = "Activities";
+			int rowcount = ex.getRowcount(sheetName);
+			int colcount = ex.getColcount(sheetName);
+			Assert.assertEquals("Count Matching", home.Showing(),rowcount);
+			Thread.sleep(5000);
+		} catch (Exception e) {
+			logger.logFail("An exception occurred:"+e.getMessage());
+		}
 	}
 	
 	@AfterMethod

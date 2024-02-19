@@ -50,6 +50,10 @@ public class HomePage_SuperAdmin extends TestBase {
 	@FindBy(xpath = "//button[normalize-space()='Add New']")
 	WebElement Addnew;
 
+	@FindBy(xpath = "//button[normalize-space()='Export']")
+	WebElement Export;
+
+
 	@FindBy(xpath = "//input[@placeholder='Enter Law Name']")
 	WebElement Lawname;
 
@@ -193,6 +197,10 @@ public class HomePage_SuperAdmin extends TestBase {
 		Addnew.click();
 	}
 
+	public void ExportButton() {
+		Export.click();
+	}
+
 	public String Law(String username,String password) {
 		Lawname.sendKeys(username);
 		Description.sendKeys(password);
@@ -327,6 +335,18 @@ public class HomePage_SuperAdmin extends TestBase {
 
 	public WebElement ActionsButtonAdd(String value) {
 		return driver.findElement(By.xpath(".//span[contains(text(),'"+value+"')]"));
+	}
+
+	@FindBy(xpath="//div[contains(@class,'custom-tabulator-footer')]//span[contains(text(),'Showing')]")
+	WebElement DataCount;
+
+
+	public int Showing() throws InterruptedException {
+		String result = DataCount.getText();
+		String[] arrOfStr = result.split("of");
+		String[] count = arrOfStr[1].split("records");
+		String cnt = count[0].replace(",","").trim();
+		return Integer.parseInt(cnt);
 	}
 
 }
