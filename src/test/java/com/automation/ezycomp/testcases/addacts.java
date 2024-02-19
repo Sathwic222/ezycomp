@@ -1,9 +1,11 @@
 package com.automation.ezycomp.testcases;
 
+import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
 //import org.openqa.selenium.Keys;
+import com.automation.ezycomp.utils.ExcelOperations;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
@@ -260,7 +262,31 @@ public class addacts extends TestBase {
 			logger.logFail("An exception occurred:"+e.getMessage());
 		}	
 	}
-	
+
+	@Test(priority=10)
+	public void ExportExcel() throws InterruptedException, IOException {
+		try {
+			loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
+			home = new HomePage_SuperAdmin();
+			actss = new act();
+			home.Masters();
+			home.act();
+			home.NavArrowclose();
+			actss.ActionClick();
+			actss.ActionsButton("Export");
+			ExcelOperations ex = new ExcelOperations(System.getProperty("user.dir") + "\\externalFiles\\downloadFiles\\Acts.xlsx");
+
+			String sheetName = "Acts";
+			int rowcount = ex.getRowcount(sheetName);
+			int colcount = ex.getColcount(sheetName);
+
+
+
+		} catch (Exception e) {
+			logger.logFail("An exception occurred:"+e.getMessage());
+		}
+
+	}
 	
 //	@Test(priority=3)
 //	 public void File() throws InterruptedException, IOException {

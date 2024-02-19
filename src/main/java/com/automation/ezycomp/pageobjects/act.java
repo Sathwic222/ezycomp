@@ -1,5 +1,6 @@
 package com.automation.ezycomp.pageobjects;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -42,6 +43,10 @@ public class act  extends TestBase{
 	
 	@FindBy(xpath=".//span[contains(text(),'Add New')]")
 	WebElement ActionsButtonAdd;
+
+	WebElement ActionsButtonAdd(String value){
+		return driver.findElement(By.xpath(".//span[contains(text(),'"+value+"')]"));
+	}
 	
 	@FindBy(xpath=".//textarea[@placeholder='Enter Act Name']")
 	WebElement EnterActName;
@@ -94,7 +99,11 @@ public class act  extends TestBase{
 	public void ActionsAdd() throws InterruptedException {
 		  ActionsButtonAdd.click();  
 	  }
-	
+
+	public void ActionsButton(String action) throws InterruptedException {
+		ActionsButtonAdd(action).click();
+	}
+
 	public void EnterActName(String Value) throws InterruptedException {
 		EnterActName.sendKeys(Value);  
 	  }

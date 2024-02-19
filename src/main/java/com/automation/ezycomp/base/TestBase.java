@@ -2,15 +2,19 @@ package com.automation.ezycomp.base;
 
 
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class TestBase {
@@ -47,7 +51,12 @@ public class TestBase {
 		}
 		else if(browserName.equals("Edge")){
 			System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir")+"\\Drivers\\msedgedriver.exe");
-			driver = new EdgeDriver();
+			Map prefs = new HashMap();
+			prefs.put("download.default_directory",
+					System.getProperty("user.dir") + File.separator + "externalFiles" + File.separator + "downloadFiles");
+			EdgeOptions options = new EdgeOptions();
+			options.setExperimentalOption("prefs", prefs);
+			driver = new EdgeDriver(options);
 		}
 	}
 }
