@@ -3,6 +3,8 @@ package com.automation.ezycomp.testcases;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
+import com.automation.ezycomp.pageobjects.*;
+import com.automation.ezycomp.utils.ExcelOperations;
 import org.openqa.selenium.Keys;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
@@ -12,10 +14,6 @@ import org.testng.annotations.Test;
 
 import com.automation.ezycomp.base.TestBase;
 import com.automation.ezycomp.functionLabrary.ReportLog;
-import com.automation.ezycomp.pageobjects.EmailPage;
-import com.automation.ezycomp.pageobjects.HomePage_SuperAdmin;
-import com.automation.ezycomp.pageobjects.LoginPage;
-import com.automation.ezycomp.pageobjects.manage_user_page;
 
 import junit.framework.Assert;
 
@@ -212,6 +210,29 @@ public class manage_users extends TestBase{
 	}
 		
 	}
+
+	@Test(priority=11)
+	public void ExportExcel() throws InterruptedException, IOException {
+		try {
+			loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
+			home = new HomePage_SuperAdmin();
+			home.NAvMenu("User Management");
+			home.NAvMenu("Manage Users");
+			home.NavArrowclose();
+			home.ExportButton();
+			Thread.sleep(5000);
+			ExcelOperations ex = new ExcelOperations(System.getProperty("user.dir") + "\\externalFiles\\downloadFiles\\Users.xlsx");
+			String sheetName = "Users";
+			int rowcount = ex.getRowcount(sheetName);
+			int colcount = ex.getColcount(sheetName);
+			Assert.assertEquals("Count Matching", home.Showing(),rowcount);
+			logger.logPass("Export file downloaded sucessfully");
+		} catch (Exception e) {
+			logger.logFail("An exception occurred:"+e.getMessage());
+		}
+	}
+
+
 	
 	
 	
