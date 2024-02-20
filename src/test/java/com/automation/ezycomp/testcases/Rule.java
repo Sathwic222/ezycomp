@@ -3,6 +3,7 @@ package com.automation.ezycomp.testcases;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
+import com.automation.ezycomp.utils.ExcelOperations;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
@@ -258,7 +259,7 @@ public class Rule extends TestBase {
 			actss = new act();
 			Thread.sleep(5000);
 			home.NAvMenu("Masters");
-			home.NAvMenu("Act");
+			home.NAvMenu("Rule");
 			home.NavArrowclose();
 			home.Pagination("Next");
 			Thread.sleep(2000);
@@ -276,6 +277,31 @@ public class Rule extends TestBase {
 		} catch (Exception e) {
 			logger.logFail("An exception occurred:"+e.getMessage());
 		}	
+	}
+
+	@Test(priority=10)
+	public void ExportExcel() throws InterruptedException, IOException {
+		try {
+			loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
+			home = new HomePage_SuperAdmin();
+			actss = new act();
+			home.NAvMenu("Masters");
+			home.NAvMenu("Rule");
+			home.NavArrowclose();
+			logger.logInfo("Clicking on actions button");
+			actss.ActionClick();
+			logger.logInfo("Clicking on Export button");
+			actss.ActionsButton("Export");
+			Thread.sleep(9000);
+			ExcelOperations ex = new ExcelOperations(System.getProperty("user.dir") + "\\externalFiles\\downloadFiles\\Rules.xlsx");
+			String sheetName = "Rule";
+			int rowcount = ex.getRowcount(sheetName);
+			int colcount = ex.getColcount(sheetName);
+			Assert.assertEquals("Count Matching", home.Showing(),rowcount);
+			logger.logPass("Export is working and count is matching ");
+		} catch (Exception e) {
+			logger.logFail("An exception occurred:"+e.getMessage());
+		}
 	}
 	
 	

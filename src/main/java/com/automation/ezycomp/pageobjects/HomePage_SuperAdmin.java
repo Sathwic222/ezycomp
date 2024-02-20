@@ -347,6 +347,9 @@ public class HomePage_SuperAdmin extends TestBase {
 		String[] count = arrOfStr[1].split("records");
 		String cnt = count[0].replace(",","").trim();
 		return Integer.parseInt(cnt);
+	//	return Integer.parseInt(DataCount.getText().split("of")[1].split("records")[0].replace(",", "").trim());
+
 	}
+
 
 }

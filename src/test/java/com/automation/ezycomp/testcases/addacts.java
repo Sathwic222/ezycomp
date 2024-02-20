@@ -280,7 +280,7 @@ public class addacts extends TestBase {
 			int rowcount = ex.getRowcount(sheetName);
 			int colcount = ex.getColcount(sheetName);
 			Assert.assertEquals("Count Matching", home.Showing(),rowcount);
-			Thread.sleep(5000);
+			logger.logPass("Export is working and count is matching ");
 		} catch (Exception e) {
 			logger.logFail("An exception occurred:"+e.getMessage());
 		}

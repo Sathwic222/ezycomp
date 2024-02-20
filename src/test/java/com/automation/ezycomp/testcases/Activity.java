@@ -292,6 +292,7 @@ public class Activity extends TestBase {
 			int rowcount = ex.getRowcount(sheetName);
 			int colcount = ex.getColcount(sheetName);
 			Assert.assertEquals("Count Matching", home.Showing(),rowcount);
+			logger.logPass("Export is working ");
 			Thread.sleep(5000);
 		} catch (Exception e) {
 			logger.logFail("An exception occurred:"+e.getMessage());

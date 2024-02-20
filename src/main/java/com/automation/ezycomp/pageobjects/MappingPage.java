@@ -70,10 +70,14 @@ public class MappingPage  extends TestBase{
 	
 	@FindBy(xpath="//input[@type='number']")
 	WebElement MaxPenaltyAmount;
-	
-	
+
 	@FindBy(xpath="(//input[@name='impriosonment'])[1]")
 	WebElement impriosonmentTickBox;
+
+	@FindBy(xpath=".//a[contains(text(),'Export')]")
+	WebElement MappingExport;
+
+
 			
 
 
@@ -144,8 +148,12 @@ public class MappingPage  extends TestBase{
 	  }
 	
 	public void impriosonmentTickBox()  {
-		impriosonmentTickBox.click(); 
+		impriosonmentTickBox.click();
 	  }
+
+	public void MappingExportButton()  {
+		MappingExport.click();
+	}
 	
 	public void EnteringMappingDetails() throws InterruptedException  {
 		home = new HomePage_SuperAdmin();

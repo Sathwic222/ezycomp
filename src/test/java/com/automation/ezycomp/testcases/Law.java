@@ -195,7 +195,6 @@ public class Law extends TestBase {
 		try {
 			loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
 			home = new HomePage_SuperAdmin();
-			//actss = new act();
 			home.NAvMenu("Masters");
 			home.NAvMenu("Law Category");
 			home.NavArrowclose();

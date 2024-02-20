@@ -3,6 +3,7 @@ package com.automation.ezycomp.testcases;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
+import com.automation.ezycomp.utils.ExcelOperations;
 import org.openqa.selenium.JavascriptExecutor;
 //import org.openqa.selenium.Keys;
 import org.testng.annotations.AfterMethod;
@@ -267,11 +268,37 @@ public class Mapping extends TestBase {
 			logger.logFail("An exception occurred:"+e.getMessage());
 		}
 	}
+
+	@Test(priority=7)
+	public void ExportExcel() throws InterruptedException, IOException {
+		try {
+			loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
+			home = new HomePage_SuperAdmin();
+			actss = new act();
+			Map = new MappingPage();
+			home.NAvMenu("Masters");
+			home.NAvMenu("Mappings");
+			home.NavArrowclose();
+			logger.logInfo("Clicking on actions button");
+			actss.ActionClick();
+			logger.logInfo("Clicking on Export button");
+			Map.MappingExportButton();
+			Thread.sleep(9000);
+			ExcelOperations ex = new ExcelOperations(System.getProperty("user.dir") + "\\externalFiles\\downloadFiles\\Act-Rule-Activity-State-Mapping.xlsx");
+			String sheetName = "ActStateMappings";
+			int rowcount = ex.getRowcount(sheetName);
+			int colcount = ex.getColcount(sheetName);
+			Assert.assertEquals("Count Matching", home.Showing(),rowcount);
+			logger.logPass("Mapping page : Export is working and count is matching ");
+		} catch (Exception e) {
+			logger.logFail("An exception occurred:"+e.getMessage());
+		}
+	}
 	
 
 	
 	
-	@Test(priority=7)
+	@Test(priority=8)
 	 public void File() throws InterruptedException, IOException {
 		try {
 			loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
@@ -283,9 +310,6 @@ public class Mapping extends TestBase {
 			home.NavArrowclose();
 			actss.ActionClick();
 			actss.Choosefile("C:\\Users\\DELL\\Downloads\\ActsTemplat.xlsx");
-			
-			
-			
 //			Assert.assertTrue(home.SubmitDisabled());
 			logger.logPass("Adding New Act with blank fields:- Submit button Disabled as expected for blank fields");
 		} catch (Exception e) {
