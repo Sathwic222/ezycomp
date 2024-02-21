@@ -45,14 +45,14 @@ import com.automation.ezycomp.pageobjects.HomePage_SuperAdmin;
 			
 		}
 		@Test(priority=1)
-		 public void login() throws InterruptedException, IOException {
+		 public void Search() throws InterruptedException, IOException {
 			try {
-				loginpage = new LoginPage();
+				loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
 				home = new HomePage_SuperAdmin();
 				loginpage = new LoginPage();
 				Company = new Companies();
 				company = new CompaniesAddnew();
-				logger.logInfo("Entering username and password");
+				// logger.logInfo("Entering username and password");
 				loginpage.login("superadmin@ezycomp.com", "test123");
 				loginpage.loginbtn();
 				Thread.sleep(5000);
@@ -76,8 +76,7 @@ import com.automation.ezycomp.pageobjects.HomePage_SuperAdmin;
 		@Test(priority=2)
 		public void compdetails() throws InterruptedException, IOException {
 			try {
-			loginpage = new LoginPage();
-			home = new HomePage_SuperAdmin();
+				loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));home = new HomePage_SuperAdmin();
 			company = new CompaniesAddnew();
 			logger.logInfo("Entering username and password");
 			loginpage.login("superadmin@ezycomp.com", "test123");

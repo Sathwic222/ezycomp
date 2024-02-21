@@ -33,7 +33,7 @@ public class CompaniesAddnew extends TestBase {
 	@FindBy(xpath=".//span[@title='Delete']")
 	 WebElement delete;
 	
-	@FindBy(xpath=".//span[@title=\"View\"]")
+	@FindBy(xpath=".//span[@title='View']")
 	 WebElement view;
 	
 	@FindBy(xpath="(.//span[contains(@class,'icon-external-link')])[1]")
@@ -85,16 +85,16 @@ public class CompaniesAddnew extends TestBase {
 	
 	// Company Details---------------------------------
 	
-	@FindBy(xpath=".//input[@class=\"form-control  text-uppercase\"]")
+	@FindBy(xpath=".//input[@class='form-control  text-uppercase']")
 	  WebElement companycode;
 	
-	@FindBy(xpath=".//input[@id=\"isAssociateCompany\"]")
+	@FindBy(xpath=".//input[@id='isAssociateCompany']")
 	  WebElement Asscompany;
 	
-	// @FindBy(xpath=".//input[@id='copyCompany']")
+	 @FindBy(xpath=".//input[@id='copyCompany']")
 	  WebElement copyAsscompany;
 	
-	@FindBy(xpath="(.//input[@class=\"form-control  \"])[1]")
+	@FindBy(xpath="(.//input[@class='form-control'])[1]")
 	  WebElement companyname;
 	
 	public WebElement DropDownValue(String value) {
@@ -105,13 +105,13 @@ public class CompaniesAddnew extends TestBase {
 		  DropDownValue(value).click();
 	  }
 	
-	@FindBy(xpath="(.//div[@class=\" css-13cymwt-control\"])[1]")
+	@FindBy(xpath="//input[@id='react-select-3-input']")
 	  WebElement businesstypedop;
 	
-	@FindBy(xpath=".//input[@placeholder=\"Enter Website\"]")
+	@FindBy(xpath=".//input[@placeholder='Enter Website']")
 	  WebElement website;
 	
-	@FindBy(xpath="(.//div[@class=\" css-13cymwt-control\"])[2]")
+	@FindBy(xpath="//input[@id='react-select-4-input']")
 	  WebElement esttypedop;
 	
 	@FindBy(xpath="(//input[@role='combobox'])[3]")
@@ -129,7 +129,7 @@ public class CompaniesAddnew extends TestBase {
 		Logoupload.sendKeys(value);
 	}
 	
-	@FindBy(xpath=".//button[@class=\"px-4 ms-3 btn btn-primary\"]")
+	@FindBy(xpath=".//button[@class='px-4 ms-3 btn btn-primary']")
 	  WebElement create;
 	
 	// @FindBy(xpath=".//button[@class=\"btn btn-outline-secondary px-4 btn btn-outline-secondary\"]")

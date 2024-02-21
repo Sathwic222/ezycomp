@@ -14,7 +14,7 @@ import com.automation.ezycomp.base.TestBase;
 import com.automation.ezycomp.functionLabrary.ReportLog;
 import com.automation.ezycomp.pageobjects.Audit;
 import com.automation.ezycomp.pageobjects.HomePage_SuperAdmin;
-import com.automation.ezycomp.pageobjects.Locationmapping;
+
 import com.automation.ezycomp.pageobjects.LoginPage;
 
 public class AuditTestCase extends TestBase {
@@ -46,7 +46,7 @@ public class AuditTestCase extends TestBase {
 			home = new HomePage_SuperAdmin();
 			loginpage = new LoginPage();
 			audit = new Audit();
-			Thread.sleep(5000);
+			Thread.sleep(2000);
 			audit.Homepage();
 			//audit.NavDoubleright();
 			
@@ -54,26 +54,28 @@ public class AuditTestCase extends TestBase {
 	        Thread.sleep(3000);
 	        
 	        audit.Auditschedule();
-	        
-	        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
-	        audit.companydop("Filpkart");
-	        audit.Dropdown("Filpkart");
-	        
-	        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-	        audit.asscompdop("Filpkart Enterprises");
-	        audit.Dropdown("Filpkart Enterprises");
-	        
-	        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-	        audit.locdop("bell (KA-BEL-BEL)");
-	        audit.Dropdown("bell (KA-BEL-BEL)");
-	        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-	        audit.actdop("Display,Returns,Audit");
-	        audit.Dropdown("Display,Returns,Audit");
-	        
-	        audit.month();
-	        
+	        audit.companydop("Etv AndhraPradesh");
+			Thread.sleep(3000);
+	        audit.Dropdown("Etv AndhraPradesh");
+            Thread.sleep(3000);
+	        audit.asscompdop("Etv Win");
+			Thread.sleep(3000);
+	        audit.Dropdown("Etv Win");
+			Thread.sleep(3000);
+	        audit.locdop("World (MH-AG-WRD)");
+			Thread.sleep(3000);
+	        audit.Dropdown("World (MH-AG-WRD)");
+			Thread.sleep(3000);
+	       // audit.actdop("Display,Returns,Audit");
+
+	       // audit.Dropdown("Display,Returns,Audit");
+
+	        home.scrollIntoView(audit.month);
+	        audit.month("Feb, 2024");
+
 	        audit.Exportbtn();
+			Thread.sleep(5000);
 	        
 	        logger.logPass("Audit Schedule will generated for month is passed");
 		} catch (Exception e) {
@@ -81,6 +83,8 @@ public class AuditTestCase extends TestBase {
 			
 		}
 	}
+
+
              @AfterMethod
                 public void tearDown() {
 	            driver.quit();

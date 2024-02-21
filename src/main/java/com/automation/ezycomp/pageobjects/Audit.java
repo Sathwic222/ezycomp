@@ -1,6 +1,9 @@
 package com.automation.ezycomp.pageobjects;
 
+import lombok.Value;
+import org.apache.xmlbeans.impl.xb.xsdschema.Public;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -15,10 +18,10 @@ public class Audit extends TestBase {
 	@FindBy(xpath ="(.//span[@class='sidenav-item-icon'])[1]")
 	WebElement NavDoubleright;
 
-	@FindBy(xpath = "(.//div[@class=\"d-flex flex-row align-items-center w-100\"])[3]")
+	@FindBy(xpath = "(.//div[@class='d-flex flex-row align-items-center w-100'])[3]")
 	WebElement Auditmanagement;
 	
-	@FindBy(xpath="(.//a[@href=\"/auditSchedule/importExport\"])[2]")
+	@FindBy(xpath="//span[normalize-space()='Audit Schedule']")
 	WebElement Auditschedule;
 	
 	public WebElement DropDownValue(String value) {
@@ -29,28 +32,28 @@ public class Audit extends TestBase {
 		  DropDownValue(value).click();
 	  }
 	
-	@FindBy(xpath="(.//div[@class=\" css-13cymwt-control\"])[1]")
+	@FindBy(xpath="//input[@id='react-select-2-input']")
 	 WebElement companydop;
 	
-	@FindBy(xpath="(//div[@class=\"input-group\"])[2]")
+	@FindBy(xpath="//input[@id='react-select-3-input']")
 	 WebElement asscompdop;
 	
-	@FindBy(xpath="(.//div[@class=\"input-group\"])[3]")
+	@FindBy(xpath="//input[@id='react-select-4-input']")
 	 WebElement locdop;
 	
-	@FindBy(xpath="(.//div[@class=\" css-13cymwt-control\"])[2]")
+	@FindBy(xpath="//input[@id='react-select-5-input']")
 	 WebElement actdop;
 	
-	@FindBy(xpath=".//input[@value=\"Dec, 2023\"]")
-	 WebElement month; 
+	@FindBy(xpath="//input[@class='rmdp-input']")
+	 public WebElement month;
 	
-	@FindBy(xpath=".//button[@class=\"ms-4 px-4 btn btn-primary\"]")
+	@FindBy(xpath="//button[normalize-space()='Export']")
 	 WebElement Exportbtn;
 	 
-	@FindBy(xpath=".//button[@class=\"btn btn-outline-secondary px-4 btn btn-outline-secondary\"]")
+	@FindBy(xpath=".//button[@class='btn btn-outline-secondary px-4 btn btn-outline-secondary']")
 	 WebElement Resetbtn;
 	
-	@FindBy(xpath=".//button[@class=\"px-4 btn btn-primary\"]")
+	@FindBy(xpath=".//button[@class='px-4 btn btn-primary']")
 	 WebElement Importbtn;
 	
 	public Audit () {
@@ -81,10 +84,15 @@ public class Audit extends TestBase {
 		locdop.sendKeys(Value);
 	}
 	public void actdop(String Value) {
-		actdop.sendKeys(Value);
+		actdop.click();
 	}
-	public void month() {
-		month.sendKeys("Dec,2023");
+
+	public void scrollIntoView(WebElement Xpath ) {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView(true);",  new Object[] { Xpath});
+	}
+	public void month(String Value) {
+		month.click();
 	}
 	public void Exportbtn() {
 		Exportbtn.click();
