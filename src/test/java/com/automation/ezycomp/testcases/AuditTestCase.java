@@ -42,16 +42,13 @@ public class AuditTestCase extends TestBase {
 	@Test(priority=1)
 	public void login()  throws InterruptedException, IOException {
 		try {
-			loginpage = new LoginPage();
+			loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
 			home = new HomePage_SuperAdmin();
 			loginpage = new LoginPage();
 			audit = new Audit();
-			logger.logInfo("Entering username and password");
-			loginpage.login("superadmin@ezycomp.com", "test123");
-			loginpage.loginbtn();
 			Thread.sleep(5000);
 			audit.Homepage();
-			audit.NavDoubleright();
+			//audit.NavDoubleright();
 			
 	        audit.Auditmanagement();
 	        Thread.sleep(3000);
@@ -60,18 +57,18 @@ public class AuditTestCase extends TestBase {
 	        
 	        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
-	        audit.companydop();
+	        audit.companydop("Filpkart");
 	        audit.Dropdown("Filpkart");
 	        
 	        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-	        audit.asscompdop();
+	        audit.asscompdop("Filpkart Enterprises");
 	        audit.Dropdown("Filpkart Enterprises");
 	        
 	        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-	        audit.locdop();
+	        audit.locdop("bell (KA-BEL-BEL)");
 	        audit.Dropdown("bell (KA-BEL-BEL)");
 	        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-	        audit.actdop();
+	        audit.actdop("Display,Returns,Audit");
 	        audit.Dropdown("Display,Returns,Audit");
 	        
 	        audit.month();

@@ -10,6 +10,52 @@ import com.automation.ezycomp.base.TestBase;
 
 public class CompaniesAddnew extends TestBase {
 	
+	
+	/// Sorting buttons
+	 @FindBy(xpath="(.//div[@class='tabulator-arrow'])[1]")
+	  WebElement compname;
+	 
+	 @FindBy(xpath="(.//div[@class='tabulator-arrow'])[2]")
+	  WebElement compcode;
+	
+	 @FindBy(xpath="(.//div[@class='tabulator-arrow'])[3]")
+	  WebElement cont;
+	
+	 @FindBy(xpath="(.//div[@class='tabulator-arrow'])[4]")
+	  WebElement mail;
+	
+	// -------------------------------------------------------------
+	  // Actions buttons
+	 
+	@FindBy(xpath=".//span[@title='Edit']")
+	 WebElement edit;
+	
+	@FindBy(xpath=".//span[@title='Delete']")
+	 WebElement delete;
+	
+	@FindBy(xpath=".//span[@title=\"View\"]")
+	 WebElement view;
+	
+	@FindBy(xpath="(.//span[contains(@class,'icon-external-link')])[1]")
+	 WebElement websitenav;
+	
+	// POPs yes, NO
+	
+	@FindBy(xpath=".//button[text()='Yes']")
+	 WebElement yesbtn;
+	
+	//@FindBy(xpath=".//button[text()='No']")
+      //  WebElement nobtn;
+	
+	
+	
+	
+	
+	
+	// Company Details------------------------------------
+	
+	
+	
 	@FindBy(xpath = ".//h4[text()='Home']")
     WebElement Homepage;
 	
@@ -21,9 +67,23 @@ public class CompaniesAddnew extends TestBase {
 
     @FindBy(xpath ="(.//span[@class=\"sidenav-item-label\"])[10]")
      WebElement ManageCompanies;
+    
+    @FindBy(xpath="//span[text()='Associate Companies']")
+	WebElement Asscomp;
+
+    
+    @FindBy(xpath =".//input[@class='form-control']")
+    WebElement Search;
+
+    
+    @FindBy(xpath=".//span[@title='download']")
+     WebElement Exportbtn;
 
 	@FindBy(xpath=".//button[@class=\"px-3 ms-auto text-nowrap btn btn-primary\"]")
 	  WebElement addbtn;
+	
+	
+	// Company Details---------------------------------
 	
 	@FindBy(xpath=".//input[@class=\"form-control  text-uppercase\"]")
 	  WebElement companycode;
@@ -31,7 +91,7 @@ public class CompaniesAddnew extends TestBase {
 	@FindBy(xpath=".//input[@id=\"isAssociateCompany\"]")
 	  WebElement Asscompany;
 	
-	@FindBy(xpath=".//input[@id='copyCompany']")
+	// @FindBy(xpath=".//input[@id='copyCompany']")
 	  WebElement copyAsscompany;
 	
 	@FindBy(xpath="(.//input[@class=\"form-control  \"])[1]")
@@ -60,7 +120,7 @@ public class CompaniesAddnew extends TestBase {
 	@FindBy(xpath="(//input[@role='combobox'])[4]")
 	  WebElement empdop;
 	
-	@FindBy(xpath=".//input[@name=\"file\"]")
+	@FindBy(xpath=".//input[@name='file']") public
 	  WebElement Logoupload;
 	
 	public void Logoupload1(String value) throws InterruptedException {
@@ -69,11 +129,11 @@ public class CompaniesAddnew extends TestBase {
 		Logoupload.sendKeys(value);
 	}
 	
-	@FindBy(xpath=".//button[@type=\"button\"]")
+	@FindBy(xpath=".//button[@class=\"px-4 ms-3 btn btn-primary\"]")
 	  WebElement create;
 	
 	// @FindBy(xpath=".//button[@class=\"btn btn-outline-secondary px-4 btn btn-outline-secondary\"]")
-	    WebElement backtolist;
+	  //  WebElement backtolist;
 	    
 	    @FindBy(xpath="//button[@class='px-4 btn btn-primary']")
 	      WebElement save;
@@ -85,34 +145,34 @@ public class CompaniesAddnew extends TestBase {
 	@FindBy(xpath=".//textarea[@name=\"companyAddress\"]")
 	  WebElement address;
 	
-	@FindBy(xpath="(.//div[@class=\" css-13cymwt-control\"])[1]")
+	@FindBy(xpath=".//input[@id=\"react-select-7-input\"]")
 	  WebElement statedop;
 	
-	@FindBy(xpath="(.//div[@class=\" css-13cymwt-control\"])[2]")
+	@FindBy(xpath=".//input[@id=\"react-select-8-input\"]")
 	  WebElement citydop;
 	
-	@FindBy(xpath="(.//div[@class=\" css-13cymwt-control\"])[3]")
+	@FindBy(xpath=".//input[@id=\"react-select-9-input\"]")
 	  WebElement countrydop;
 	
-	@FindBy(xpath=".//input[@name=\"contactNumber\"]")
+	@FindBy(xpath=".//input[@name='contactNumber']")
 	  WebElement contactno;
 	
-	 @FindBy(xpath=".//input[@name=\"email\"]")
+	 @FindBy(xpath=".//input[@name='email']")
 	  WebElement compemail;
      
-      @FindBy(xpath="//input[@name=\"contactPersonName\"]")
+      @FindBy(xpath="//input[@name='contactPersonName']")
 	  WebElement name;
 
-	@FindBy(xpath=".//input[@name=\"contactPersonDesignation\"]")
+	@FindBy(xpath=".//input[@name='contactPersonDesignation']")
 	  WebElement designation ;
 	
-	@FindBy(xpath=".//input[@name=\"contactPersonDepartment\"]")
+	@FindBy(xpath=".//input[@name='contactPersonDepartment']")
 	  WebElement department ;
 	
-	@FindBy(xpath=".//input[@name=\"contactPersonMobile\"]")
+	@FindBy(xpath=".//input[@name='contactPersonMobile']")
 	  WebElement contactpermob ;
 	
-	@FindBy(xpath=".//input[@name=\"contactPersonEmail\"]")
+	@FindBy(xpath=".//input[@name='contactPersonEmail']")
 	  WebElement contactperemail ;
 	
 	@FindBy(xpath="//button[@class=\"px-4 btn btn-primary\"]")
@@ -126,72 +186,108 @@ public class CompaniesAddnew extends TestBase {
 	
 	//  TDS Details
 	
-	@FindBy(xpath=".//input[@class=\"form-control is-invalid text-uppercase\"]")
+	@FindBy(xpath=".//input[@name='pan']")
 	WebElement Pannumber;
 	
-	@FindBy(xpath=".//input[@class=\"form-control  text-uppercase\"]")
+	@FindBy(xpath=".//input[@name='tan']")
 	WebElement Tannumber;
 	
-	@FindBy(xpath=".//input[@class=\"form-control is-invalid \"]")
+	@FindBy(xpath=".//input[@name='pan_fullname']")
 	WebElement FullName;
 	
-	@FindBy(xpath=".//input[@name=\"pan_surname\"]")
+	@FindBy(xpath=".//input[@name='pan_surname']")
 	WebElement pansurname;
 	
-	@FindBy(xpath=".//input[@name=\"pan_designation\"]")
+	@FindBy(xpath=".//input[@name='pan_designation']")
 	WebElement pandesignation;
 	
-	@FindBy(xpath=".//input[@name=\"pan_mobile\"]")
+	@FindBy(xpath=".//input[@name='pan_mobile']")
 	WebElement panmobile;
 	
-	@FindBy(xpath=".//input[@name=\"pan_email\"]")
+	@FindBy(xpath=".//input[@name='pan_email']")
 	WebElement panemail;
 	
-	@FindBy(xpath=".//input[@name=\"pan_place\"]")
+	@FindBy(xpath=".//input[@name='pan_place']")
 	WebElement panplace;
 	
 	//PF Details//
-	@FindBy(xpath=".//input[@name=\"pF_Ac_No\"]")
+	@FindBy(xpath=".//input[@name='pF_Ac_No']")
 	WebElement PFaccountnumber;
 	
-	@FindBy(xpath=".//input[@name=\"pF_Base_Limit\"]")
+	@FindBy(xpath=".//input[@name='pF_Base_Limit']")
 	WebElement PFbaselimit;
 	
-	@FindBy(xpath=".//input[@name=\"pF_Deduction_Percent\"]")
+	@FindBy(xpath=".//input[@name='pF_Deduction_Percent']")
 	WebElement PFdeduction;
 	 
-	@FindBy(xpath=".//input[@name=\"pF_Establishment_Code\"]")
+	@FindBy(xpath=".//input[@name='pF_Establishment_Code']")
 	WebElement PFesbliscode;
 	
-	@FindBy(xpath=".//input[@name=\"pF_Establishment_Id\"]")
+	@FindBy(xpath=".//input[@name='pF_Establishment_Id']")
 	WebElement PFesblisID;
 	
-	@FindBy(xpath=".//input[@name=\"eps\"]")
+	@FindBy(xpath=".//input[@name='eps']")
 	WebElement PFeps ;
 	
-	@FindBy(xpath=".//input[@name=\"pF_Admin_Percentage\"]")
+	@FindBy(xpath=".//input[@name='pF_Admin_Percentage']")
 	WebElement PFadmin ;
 	
-	@FindBy(xpath=".//input[@name=\"pF\"]")
+	@FindBy(xpath=".//input[@name='pF']")
 	WebElement PF ;
 	
-	@FindBy(xpath=".//input[@placeholder=\"Enter EDLI Admin %\"]")
+	@FindBy(xpath=".//input[@placeholder='Enter EDLI Admin %']")
 	WebElement PFedliadmin;
 	
-	@FindBy(xpath=".//input[@placeholder=\"Enter % of EDLI\"]")
+	@FindBy(xpath=".//input[@placeholder='Enter % of EDLI']")
 	WebElement PFedli ;
 	
-	@FindBy(xpath=".//input[@id=\"autoGeneratePF\"]")
+	@FindBy(xpath=".//input[@id='autoGeneratePF']")
 	WebElement auto;
 	
-	@FindBy(xpath=".//input[@name=\"gstn_no\"]")
+	@FindBy(xpath=".//input[@name='gstn_no']")
 	WebElement gstnumbr;
 	
-	@FindBy(xpath=".//button[@class=\"px-4 btn btn-primary\"]")
+	@FindBy(xpath=".//button[@class='px-4 btn btn-primary']")
 	WebElement PFsave;
 	
-	@FindBy(xpath=".//button[@class=\"px-4 ms-3 btn btn-primary\"]")
+	@FindBy(xpath=".//button[@class='px-4 ms-3 btn btn-primary']")
 	WebElement PFsavenxt;
+	
+	
+	
+	
+	
+	//SMTP DETAILS
+	
+	// @FindBy(xpath=".//input[@name='emailAddress']")
+	//WebElement EmailAddress;
+	
+	@FindBy(xpath=".//input[contains(@name,'email')]")
+	WebElement Email;
+	
+	
+	@FindBy(xpath=".//input[@name='password']")
+	WebElement Password;
+	
+	@FindBy(xpath=".//input[@name='host']")
+	WebElement Host;
+	
+	@FindBy(xpath="//div[@class=' css-hlgwow']")
+	WebElement Port;
+	
+	@FindBy(xpath=".//button[text()='Save']")
+	WebElement Save;
+	
+	@FindBy(xpath=".//button[text()='Save & Close']")
+	WebElement Saveclose;
+	
+	@FindBy(xpath=".//button[text()='Previous']")
+	WebElement Previous;
+	
+	@FindBy(xpath=".//button[text()='Cancel']")
+	WebElement Cancel;
+	
+	
 	
 	
 	
@@ -207,6 +303,52 @@ public class CompaniesAddnew extends TestBase {
 	public CompaniesAddnew() {
 		PageFactory.initElements(driver, this);
 	}
+	
+	// Sorting buttons--------------------------------------
+	
+	public void compname() {
+		compname.click();
+	}
+	public void compcode() {
+		compcode.click();
+	}
+	public void cont() {
+		cont.click();
+	}
+	public void mail() {
+		mail.click();
+	}
+	
+	
+	// Action buttons-----------------------------
+	
+	public void edit() {
+		edit.click();
+	}
+	
+	public void delete() {
+		delete.click();
+	}
+	public void view() {
+		view.click();
+	}
+	
+	public void webnav() {
+		websitenav.click();
+	}
+	
+	
+	// pops yes , no
+	
+	public void yes() {
+		yesbtn.click();
+	}
+	
+	//public void nobtn() {
+	//	nobtn.click();
+//	}
+	
+	//-----------------------------------------------------------
 	public void Rightarrow() {
     	NavDoubleright.click();
 	}
@@ -219,6 +361,19 @@ public class CompaniesAddnew extends TestBase {
 		ManageCompanies.click();
 	}
 	
+	public void asscomp() {
+		Asscomp.click();
+	}
+	
+	// SEARCH //----------
+	
+	public void Search() {
+		Search.sendKeys("Viryuf");
+	}
+	
+	public void Exportbtn() {
+		Exportbtn.click();
+	}
     public void addbutton() {
     	addbtn.click();
     }
@@ -259,6 +414,11 @@ public class CompaniesAddnew extends TestBase {
     empdop.click();
     }
     
+    public void scrollIntoView(WebElement Xpath) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView(true);",  new Object[] { Xpath});
+    }
+    
    public void Logoupload(String Value) {
 	 Logoupload.sendKeys("C:\\Users\\sathw\\Downloads//download.png");
    }
@@ -277,7 +437,7 @@ public class CompaniesAddnew extends TestBase {
        
    
    
-  // SPOC details
+  // SPOC details--------------------------------------------------------------------
    
    
    public void address() {
@@ -328,7 +488,7 @@ public class CompaniesAddnew extends TestBase {
     	savenextbtn.click();
     }
     
-    // Statutory Details
+    // Statutory Details--------------------------------------------------------------
     
     public void Pannumber() {
     	Pannumber.sendKeys("SERTF3456T");
@@ -355,7 +515,7 @@ public class CompaniesAddnew extends TestBase {
     	panplace.sendKeys("hyd");
     }
     public void gstnumbr() {
-    	gstnumbr.sendKeys("77988u98909990");
+    	gstnumbr.sendKeys("22AAAAA0000A1Z5");
     }
     public void PFsave() {
     	PFsave.click();
@@ -365,6 +525,32 @@ public class CompaniesAddnew extends TestBase {
     }
     
     
+    
+    // SMTP Details--------------------------------------------------------------------
+    
+    public void email() {
+    	Email.sendKeys("sathwic333@gmail.com");
+    }
+    
+    public void passwrd() {
+    	Password.sendKeys("Sathwic@1900");
+    }
+    public void hos() {
+    	Host.sendKeys("77777323");
+    }
+    
+    public void por() {
+    	Port.click();;
+    }
+    
+    public void save4() {
+    	save.click();
+    	
+    }
+    
+    public void Saveclose() {
+    	Saveclose.click();
+    }
     
 }
 

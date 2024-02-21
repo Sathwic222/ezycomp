@@ -1,5 +1,6 @@
 package com.automation.ezycomp.pageobjects;
 
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -29,50 +30,69 @@ public class Locationmapping extends TestBase {
 		  DropDownValue(value).click();
 	  }
 	
-    @FindBy(xpath="(.//div[@class=\" css-13cymwt-control\"])[1]")
+    @FindBy(xpath="//input[@id='react-select-2-input']")
     WebElement compdop ;
     	
-    @FindBy(xpath="(.//div[@class=\" css-13cymwt-control\"])[2]")
+    @FindBy(xpath="//input[@id='react-select-3-input']")
     WebElement asscompdop ;
     
-    @FindBy(xpath=".//button[@class=\"dropdown-toggle show btn btn-primary\"]")
+    @FindBy(xpath="//button[normalize-space()='Actions']")
      WebElement actionbtn;
 
     @FindBy(xpath=".//span[contains(text(),'Add New')]")
 	WebElement ActionsButtonAdd;
     
-    @FindBy(xpath="//div[@id=\"react-select-15-placeholder\"]")
+    @FindBy(xpath="//input[@id='react-select-5-input']")
      WebElement statedrop ;
     
-    @FindBy(xpath="(.//div[@class=\"input-group\"])[5]")
+    @FindBy(xpath=".//input[@id='react-select-6-input']")
      WebElement citydrop;
     
-    @FindBy(xpath=".//input[@name=\"locationName\"]")
+    @FindBy(xpath=".//input[@name='locationName']")
     WebElement locname;
     
-    @FindBy(xpath=".//input[@name=\"locationCode\"]")
+    @FindBy(xpath=".//input[@name='locationCode']")
     WebElement loccode;
    
-    @FindBy(xpath=".//input[@name=\"contactPersonName\"]")
+    @FindBy(xpath=".//input[@name='contactPersonName']")
     WebElement conpername ;
    
-    @FindBy(xpath=".//input[@name=\"contactPersonMobile\"]")
+    @FindBy(xpath=".//input[@name='contactPersonMobile']")
     WebElement mobile;
    
-    @FindBy(xpath=".//input[@name=\"contactPersonEmail\"]")
+    @FindBy(xpath=".//input[@name='contactPersonEmail']")
     WebElement email;
    
-    @FindBy(xpath=".//textarea[@name=\"address\"]")
+    @FindBy(xpath=".//textarea[@name='address']")
     WebElement address ;
    
     
-    @FindBy(xpath=".//button[@class=\"px-4 btn btn-primary\"]")
+    @FindBy(xpath=".//button[@class='px-4 btn btn-primary']")
     WebElement submitbtn ;
      
-    @FindBy(xpath=".//button[@class=\"btn btn-outline-secondary px-4 btn btn-outline-secondary\"]")
+    @FindBy(xpath=".//button[@class='btn btn-outline-secondary px-4 btn btn-outline-secondary']")
      WebElement cancelbtn;
-    
-    
+
+   // ---------------------------
+    @FindBy(xpath="(//input[@placeholder='Search'])[1]")
+     WebElement search;
+
+    @FindBy(xpath="(//span[@title='Edit'])[1]")
+    WebElement editbtn;
+
+    @FindBy(xpath="//span[@title='Delete']")
+    WebElement deletebtn;
+
+    @FindBy(xpath="(//span[@title='View'])[1]")
+    WebElement viewbtn;
+
+
+
+
+
+
+
+    //--------------------------------------------
     public Locationmapping() {
     	PageFactory.initElements(driver, this);
     }
@@ -89,11 +109,11 @@ public class Locationmapping extends TestBase {
     public void locmap() {
     	locmap.click();
     }
-    public void compdop() {
-    	compdop.sendKeys("ETV AndhraPradesh");
+    public void compdop( String Value) {
+    	compdop.sendKeys( Value);
     }
-    public void asscompdop() {
-    	asscompdop.sendKeys("ETV News");
+    public void asscompdop(String Value) {
+    	asscompdop.sendKeys(Value);
     }
     public void actionbtn() {
     	actionbtn.click();
@@ -101,14 +121,14 @@ public class Locationmapping extends TestBase {
     public void ActionsButtonAdd() {
     	ActionsButtonAdd.click();
     }
-    public void statedrop() {
-    	statedrop.sendKeys("Maharashtra");
+    public void statedrop(String Value) {
+    	statedrop.sendKeys(Value);
     }
-    public void citydrop() {
-    	citydrop.sendKeys("Barshi");
+    public void citydrop(String Value) {
+    	citydrop.sendKeys(Value);
     }
     public void locname() {
-    	locname.sendKeys("Safari");
+    	locname.sendKeys("Saari");
     }
     public void loccode() {
     	loccode.sendKeys("sfia");
@@ -129,10 +149,24 @@ public class Locationmapping extends TestBase {
     	submitbtn.click();
     }
    public void cancelbtn() {
-	   cancelbtn.click();
+	   cancelbtn.click(); }
+
+       public void search(String Value) {
+           search.sendKeys(Value);
+       }
+       public void delete() {
+           deletebtn.click();
+       }
+       public void edit() {
+           editbtn.click();
+       }
+
+       public void view() {
+           viewbtn.click();
+       }
    
 	
 }
     
-}
+
 

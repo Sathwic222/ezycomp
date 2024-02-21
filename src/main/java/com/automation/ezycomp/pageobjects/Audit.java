@@ -71,17 +71,17 @@ public class Audit extends TestBase {
 		Auditschedule.click();
 	}
 	
-	public void companydop() {
-		companydop.click();
+	public void companydop(String Value) {
+		companydop.sendKeys(Value);
 	}
-	public void asscompdop() {
-		asscompdop.click();
+	public void asscompdop(String Value) {
+		asscompdop.sendKeys(Value);
 	}
-	public void locdop() {
-		locdop.click();
+	public void locdop(String Value) {
+		locdop.sendKeys(Value);
 	}
-	public void actdop() {
-		actdop.click();
+	public void actdop(String Value) {
+		actdop.sendKeys(Value);
 	}
 	public void month() {
 		month.sendKeys("Dec,2023");
