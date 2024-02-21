@@ -11,6 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import com.automation.ezycomp.base.TestBase;
+import java.util.*;
 
 
 public class HomePage_SuperAdmin extends TestBase {
@@ -349,6 +350,100 @@ public class HomePage_SuperAdmin extends TestBase {
 		return Integer.parseInt(cnt);
 	//	return Integer.parseInt(DataCount.getText().split("of")[1].split("records")[0].replace(",", "").trim());
 
+	}
+
+	public List<WebElement> headerData() {
+		return driver.findElements(By.xpath("//div[@class='tabulator-header']//div[@class='tabulator-col-title']"));
+	}
+
+	public List<WebElement> rowData() {
+		return driver.findElements(By.xpath("//div[contains(@class,'tabulator-row')]"));
+	}
+
+	public List<WebElement> rowValue(int index) {
+		return driver.findElements(By.xpath("//div[contains(@class,'tabulator-row')]["+index+"]//div[@class='ellipse two-lines']"));
+	}
+
+	//div[contains(@class,'tabulator-row')][1]//div[@class='ellipse two-lines']
+
+	public Iterator<Object[]> getTableData() throws Exception{
+		int colcount = headerData().size();
+		int rowcount = rowData().size();
+
+		List<Object[]> ls = new ArrayList<Object[]>();
+//		iterate thru each row
+		for(int iRow=1;iRow<=rowcount;iRow++){
+			Object[] obj = new Object[1];
+//			create a map
+			Map<String, String> hm = new HashMap<String, String>();
+//			column iteration
+			for(int iCol=0;iCol<colcount-1;iCol++){
+
+				String key=headerData().get(iCol).getText();
+				String val= rowValue(iRow).get(iCol).getText();
+				hm.put(key, val);
+			}	//			column iteration
+			obj[0]=hm;
+			ls.add(obj);
+			//}
+		}
+		return ls.iterator();
+	}
+
+	public boolean compareListColumnCount(Iterator<Object[]> tblData, Iterator<Object[]> xlData){
+
+		Object tbl = tblData.next()[0];
+		Object xl = xlData.next()[0];
+
+		Map<String, String> xlmap = new HashMap<>();
+		Map<String, String> tblmap = new HashMap<>();
+
+		xlmap = ((HashMap) xl);
+		tblmap = ((HashMap) tbl);
+
+		if(tblmap.keySet().size() == xlmap.keySet().size()){
+			return true;
+		}
+
+		return false;
+
+	}
+
+	public boolean compareListColumnValues(Iterator<Object[]> tblData, Iterator<Object[]> xlData) {
+
+		Object tbl = tblData.next()[0];
+		Object xl = xlData.next()[0];
+
+		Map<String, String> xlmap = new HashMap<>();
+		Map<String, String> tblmap = new HashMap<>();
+
+		xlmap = ((HashMap) xl);
+		tblmap = ((HashMap) tbl);
+
+		if (tblmap.keySet().equals(xlmap.keySet())) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean compareColumnNames(Iterator<Object[]> xlData, String[] col) {
+
+		//Object tbl = tblData.next()[0];
+		Object xl = xlData.next()[0];
+
+		Map<String, String> xlmap = new HashMap<>();
+		//Map<String, String> tblmap = new HashMap<>();
+
+		xlmap = ((HashMap) xl);
+		//tblmap = ((HashMap) tbl);
+
+		List<String> l = new ArrayList<>();
+		l.addAll(Arrays.asList(col));
+
+		if(xlmap.keySet().containsAll(l)){
+			return true;
+		}
+		return false;
 	}
 
 

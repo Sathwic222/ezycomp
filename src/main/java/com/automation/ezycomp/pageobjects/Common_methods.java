@@ -75,4 +75,31 @@ public class Common_methods  extends TestBase{
         ((JavascriptExecutor) driver).executeScript("document.getElementByClassName('form-control is-valid').setAttribute('Value', Path)");
         //Choosefile.
     }
+
+    /* working with two Lists
+        //while (xlData.hasNext() && tblData.hasNext()) {
+                Object xl = xlData.next()[0];
+				Object tbl = tblData.next()[0];
+
+				Map<String, String> xlmap = new HashMap<>();
+				Map<String, String> tblmap = new HashMap<>();
+
+//				((HashMap) xl[0]).get("Law");
+//				((HashMap) tbl[0]).get("Law");
+
+				xlmap = ((HashMap) xl);
+				tblmap = ((HashMap) tbl);
+
+				Assert.assertEquals("The Column count matches",tblmap.keySet().size(), xlmap.keySet().size());
+
+				Assert.assertTrue(xlmap.keySet().equals(tblmap.keySet()));
+
+				// pass columns to verify in excel
+				String[] col = {"Law","Act Name","Establishment Type"};
+				List<String> l = new ArrayList<>();
+				l.addAll(Arrays.asList(col));
+
+				Assert.assertTrue(xlmap.keySet().containsAll(l));
+     */
+
 }
