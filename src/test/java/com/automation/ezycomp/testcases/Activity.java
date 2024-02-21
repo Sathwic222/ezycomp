@@ -2,6 +2,7 @@ package com.automation.ezycomp.testcases;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.Iterator;
 
 //import org.openqa.selenium.Keys;
 import com.automation.ezycomp.utils.ExcelOperations;
@@ -293,6 +294,42 @@ public class Activity extends TestBase {
 			int colcount = ex.getColcount(sheetName);
 			Assert.assertEquals("Count Matching", home.Showing(),rowcount);
 			logger.logPass("Export is working ");
+			Thread.sleep(5000);
+		} catch (Exception e) {
+			logger.logFail("An exception occurred:"+e.getMessage());
+		}
+	}
+
+	@Test(priority=11)
+	public void ValidateExportExcel() throws InterruptedException, IOException {
+		try {
+			loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
+			home = new HomePage_SuperAdmin();
+			actss = new act();
+			Activity = new ActivityPag();
+			home.NAvMenu("Masters");
+			home.NAvMenu("Activity");
+			home.NavArrowclose();
+			Activity.Establishment();
+			logger.logInfo("Selecting POlicy value on type dropdown");
+			home.Dropdown("Policy");
+			Thread.sleep(2000);
+			Iterator<Object[]> tblData = home.getTableData();
+			actss.ActionClick();
+			logger.logInfo("Clicking on Export button");
+			actss.ActionsButton("Export");
+			Thread.sleep(5000);
+			ExcelOperations ex = new ExcelOperations(System.getProperty("user.dir") + "\\externalFiles\\downloadFiles\\Activities.xlsx");
+			String sheetName = "Activities"; //workbook.getSheetAt(0);
+			int rowcount = ex.getRowcount(sheetName);
+			int colcount = ex.getColcount(sheetName);
+			//List<Object[]> xlData = ex.getData(sheetName,rowcount,colcount);
+			Iterator<Object[]> xlData = ex.getData(sheetName,rowcount,colcount);
+			Assert.assertTrue(home.compareListColumnCount(tblData, xlData));
+			logger.logPass("Export is working and Column count is matching ");
+			String[] col = {"Activity Name","Type","Periodicity","Calender Type"};
+			Assert.assertTrue(home.compareColumnNames(xlData,col));
+			logger.logPass("Export is working and columns names are matching ");
 			Thread.sleep(5000);
 		} catch (Exception e) {
 			logger.logFail("An exception occurred:"+e.getMessage());

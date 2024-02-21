@@ -2,6 +2,7 @@ package com.automation.ezycomp.testcases;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.Iterator;
 
 import com.automation.ezycomp.pageobjects.act;
 import com.automation.ezycomp.utils.ExcelOperations;
@@ -206,6 +207,34 @@ public class Law extends TestBase {
 			int colcount = ex.getColcount(sheetName);
 			Assert.assertEquals("Count Matching", home.Showing(),rowcount);
 			logger.logPass("Law Page : Export is working and count is matching ");
+		} catch (Exception e) {
+			logger.logFail("An exception occurred:"+e.getMessage());
+		}
+	}
+
+	@Test(priority=9)
+	public void ValidateExportExcel() throws InterruptedException, IOException {
+		try {
+			loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
+			home = new HomePage_SuperAdmin();
+			home.NAvMenu("Masters");
+			home.NAvMenu("Law Category");
+			home.NavArrowclose();
+			Iterator<Object[]> tblData = home.getTableData();
+			logger.logInfo("Clicking on Export button");
+			home.ExportButton();
+			Thread.sleep(5000);
+			ExcelOperations ex = new ExcelOperations(System.getProperty("user.dir") + "\\externalFiles\\downloadFiles\\Laws.xlsx");
+			String sheetName = "Laws"; //workbook.getSheetAt(0);
+			int rowcount = ex.getRowcount(sheetName);
+			int colcount = ex.getColcount(sheetName);
+			//List<Object[]> xlData = ex.getData(sheetName,rowcount,colcount);
+			Iterator<Object[]> xlData = ex.getData(sheetName,rowcount,colcount);
+			Assert.assertTrue(home.compareListColumnCount(tblData, xlData));
+			logger.logPass("Export is working and Column count is matching ");
+			String[] col = {"Law Name","Description"};
+			Assert.assertTrue(home.compareColumnNames(xlData,col));
+			logger.logPass("Export is working and columns names are matching ");
 		} catch (Exception e) {
 			logger.logFail("An exception occurred:"+e.getMessage());
 		}
