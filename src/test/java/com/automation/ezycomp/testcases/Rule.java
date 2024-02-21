@@ -2,7 +2,9 @@ package com.automation.ezycomp.testcases;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.Iterator;
 
+import com.automation.ezycomp.pageobjects.*;
 import com.automation.ezycomp.utils.ExcelOperations;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
@@ -12,10 +14,6 @@ import org.testng.annotations.Test;
 
 import com.automation.ezycomp.base.TestBase;
 import com.automation.ezycomp.functionLabrary.ReportLog;
-import com.automation.ezycomp.pageobjects.HomePage_SuperAdmin;
-import com.automation.ezycomp.pageobjects.LoginPage;
-import com.automation.ezycomp.pageobjects.RulePage;
-import com.automation.ezycomp.pageobjects.act;
 
 import junit.framework.Assert;
 
@@ -303,7 +301,37 @@ public class Rule extends TestBase {
 			logger.logFail("An exception occurred:"+e.getMessage());
 		}
 	}
-	
+
+	@Test(priority=11)
+	public void ValidateExportExcel() throws InterruptedException, IOException {
+		try {
+			loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
+			home = new HomePage_SuperAdmin();
+			actss = new act();
+			home.NAvMenu("Masters");
+			home.NAvMenu("Rule");
+			home.NavArrowclose();
+			Iterator<Object[]> tblData = home.getTableData();
+			actss.ActionClick();
+			logger.logInfo("Clicking on Export button");
+			actss.ActionsButton("Export");
+			Thread.sleep(5000);
+			ExcelOperations ex = new ExcelOperations(System.getProperty("user.dir") + "\\externalFiles\\downloadFiles\\Rules.xlsx");
+			String sheetName = "Rule"; //workbook.getSheetAt(0);
+			int rowcount = ex.getRowcount(sheetName);
+			int colcount = ex.getColcount(sheetName);
+			//List<Object[]> xlData = ex.getData(sheetName,rowcount,colcount);
+			Iterator<Object[]> xlData = ex.getData(sheetName,rowcount,colcount);
+			Assert.assertTrue(home.compareListColumnCount(tblData, xlData));
+			logger.logPass("Rule Export is working and Column count is matching ");
+			String[] col = {"Rule Name","Unique Identifier","Rule No","Section No","Type","Description"};
+			Assert.assertTrue(home.compareColumnNames(xlData,col));
+			logger.logPass("Rule Export is working and columns names are matching ");
+			Thread.sleep(5000);
+		} catch (Exception e) {
+			logger.logFail("An exception occurred:"+e.getMessage());
+		}
+	}
 	
 	
 	@AfterMethod

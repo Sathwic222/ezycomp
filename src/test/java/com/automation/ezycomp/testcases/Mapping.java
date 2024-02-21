@@ -2,6 +2,7 @@ package com.automation.ezycomp.testcases;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.Iterator;
 
 import com.automation.ezycomp.utils.ExcelOperations;
 import org.openqa.selenium.JavascriptExecutor;
@@ -294,11 +295,43 @@ public class Mapping extends TestBase {
 			logger.logFail("An exception occurred:"+e.getMessage());
 		}
 	}
-	
 
-	
-	
 	@Test(priority=8)
+	public void ValidateExportExcel() throws InterruptedException, IOException {
+		try {
+			loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
+			home = new HomePage_SuperAdmin();
+			actss = new act();
+			Map = new MappingPage();
+			home.NAvMenu("Masters");
+			home.NAvMenu("Mappings");
+			home.NavArrowclose();
+			Map.TypeDropdown();
+			home.Dropdown("");
+			//Iterator<Object[]> tblData = home.getTableData();
+			actss.ActionClick();
+			logger.logInfo("Clicking on Export button");
+			Map.MappingExportButton();
+			Thread.sleep(5000);
+			ExcelOperations ex = new ExcelOperations(System.getProperty("user.dir") + "\\externalFiles\\downloadFiles\\Act-Rule-Activity-State-Mapping.xlsx");
+			String sheetName = "ActStateMappings"; //workbook.getSheetAt(0);
+			int rowcount = ex.getRowcount(sheetName);
+			int colcount = ex.getColcount(sheetName);
+			//List<Object[]> xlData = ex.getData(sheetName,rowcount,colcount);
+			Iterator<Object[]> xlData = ex.getData(sheetName,rowcount,colcount);
+			//Assert.assertTrue(home.compareListColumnCount(tblData, xlData));
+			//logger.logPass("Export is working and Column count is matching ");
+			String[] col = {"Act Name","Rule Name","Rule No","Section No","Activity Name","Establishment Type","State Name","Form Name","Compliance Nature","Proof Of Compliance","Penalty","Risk","Maximum Penalty Amount","Impriosonment","Continuing Penalty","Cancellation Suspension Of License","Statutory Authority","Compliance Description","Audit Type"};
+			Assert.assertTrue(home.compareColumnNames(xlData,col));
+			logger.logPass("Export is working and columns names are matching ");
+			Thread.sleep(5000);
+		} catch (Exception e) {
+			logger.logFail("An exception occurred:"+e.getMessage());
+		}
+	}
+	
+	
+	@Test(priority=9)
 	 public void File() throws InterruptedException, IOException {
 		try {
 			loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));

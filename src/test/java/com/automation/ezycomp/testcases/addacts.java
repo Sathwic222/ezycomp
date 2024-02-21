@@ -274,6 +274,7 @@ public class addacts extends TestBase {
 			home.act();
 			home.NavArrowclose();
 			actss.ActionClick();
+			logger.logInfo("Clicking on Export button");
 			actss.ActionsButton("Export");
 			Thread.sleep(5000);
 			ExcelOperations ex = new ExcelOperations(System.getProperty("user.dir") + "\\externalFiles\\downloadFiles\\Acts.xlsx");
@@ -297,9 +298,12 @@ public class addacts extends TestBase {
 			home.act();
 			home.NavArrowclose();
 			actss.Establishment();
+			logger.logInfo("Selecting BOCW value on establishment type dropdown");
 			home.Dropdown("BOCW");
+			Thread.sleep(2000);
 			Iterator<Object[]> tblData = home.getTableData();
 			actss.ActionClick();
+			logger.logInfo("Clicking on Export button");
 			actss.ActionsButton("Export");
 			Thread.sleep(5000);
 			ExcelOperations ex = new ExcelOperations(System.getProperty("user.dir") + "\\externalFiles\\downloadFiles\\Acts.xlsx");
@@ -308,12 +312,11 @@ public class addacts extends TestBase {
 			int colcount = ex.getColcount(sheetName);
 			//List<Object[]> xlData = ex.getData(sheetName,rowcount,colcount);
 			Iterator<Object[]> xlData = ex.getData(sheetName,rowcount,colcount);
-
 			Assert.assertTrue(home.compareListColumnCount(tblData, xlData));
-
+			logger.logPass("Export is working and Column count is matching ");
 			String[] col = {"Law Category","Act Name","Establishment Type"};
 			Assert.assertTrue(home.compareColumnNames(xlData,col));
-
+			logger.logPass("Export is working and columns names are matching ");
 			Thread.sleep(5000);
 		} catch (Exception e) {
 			logger.logFail("An exception occurred:"+e.getMessage());

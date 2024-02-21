@@ -3,6 +3,7 @@ package com.automation.ezycomp.testcases;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.Iterator;
 
 import com.automation.ezycomp.utils.ExcelOperations;
 import org.testng.annotations.AfterMethod;
@@ -281,7 +282,38 @@ public class City extends TestBase {
 			logger.logFail("An exception occurred:"+e.getMessage());
 		}
 	}
-	
+
+	@Test(priority=11)
+	public void ValidateExportExcel() throws InterruptedException, IOException {
+		try {
+			loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
+			home = new HomePage_SuperAdmin();
+			home.NAvMenu("Masters");
+			home.NAvMenu("City");
+			home.NavArrowclose();
+			Iterator<Object[]> tblData = home.getTableData();
+			logger.logInfo("Clicking on Export button");
+			home.ExportButton();
+			Thread.sleep(5000);
+			ExcelOperations ex = new ExcelOperations(System.getProperty("user.dir") + "\\externalFiles\\downloadFiles\\Cities.xlsx");
+			String sheetName = "Cities"; //workbook.getSheetAt(0);
+			int rowcount = ex.getRowcount(sheetName);
+			int colcount = ex.getColcount(sheetName);
+			//List<Object[]> xlData = ex.getData(sheetName,rowcount,colcount);
+			Iterator<Object[]> xlData = ex.getData(sheetName,rowcount,colcount);
+			Assert.assertTrue(home.compareListColumnCount(tblData, xlData));
+			logger.logPass("Export is working and Column count is matching ");
+			String[] col = {"City Name","City Code","State Name"};
+			Assert.assertTrue(home.compareColumnNames(xlData,col));
+			logger.logPass("City page Export is working and columns names are matching ");
+		} catch (Exception e) {
+			logger.logFail("An exception occurred:"+e.getMessage());
+		}
+	}
+
+	//"Act Name","Rule Name","Rule No","Section No","Activity Name","Establishment Type","State Name","Form Name","Compliance Nature","Proof Of Compliance","Penalty","Risk","Maximum Penalty Amount","Impriosonment","Continuing Penalty","Cancellation Suspension Of License","Statutory Authority","Compliance Description","Audit Type"
+
+
 	@AfterMethod
 	public void tearDown() {
 		driver.quit();
