@@ -51,8 +51,8 @@ public class Companies extends TestBase {
 		ManageCompanies.click();
 	}
 	
-	public void Search(String Filpkart) {
-		Search.sendKeys(Filpkart);
+	public void Search(String Value) {
+		Search.sendKeys(Value);
 	}
 	
 	public void AddNewBtn() {

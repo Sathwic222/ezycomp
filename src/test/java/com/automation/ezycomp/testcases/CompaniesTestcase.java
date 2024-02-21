@@ -4,7 +4,8 @@
 	import java.io.IOException;
 	import java.lang.reflect.Method;
 
-import org.openqa.selenium.JavascriptExecutor;
+	import com.automation.ezycomp.pageobjects.*;
+	import org.openqa.selenium.JavascriptExecutor;
 import org.testng.annotations.AfterMethod;
 	import org.testng.annotations.AfterSuite;
 	import org.testng.annotations.BeforeMethod;
@@ -13,10 +14,6 @@ import org.testng.annotations.AfterMethod;
 
 	import com.automation.ezycomp.base.TestBase;
 	import com.automation.ezycomp.functionLabrary.ReportLog;
-import com.automation.ezycomp.pageobjects.Companies;
-import com.automation.ezycomp.pageobjects.CompaniesAddnew;
-import com.automation.ezycomp.pageobjects.HomePage_SuperAdmin;
-	import com.automation.ezycomp.pageobjects.LoginPage;
 
 	import junit.framework.Assert;
 	import java.util.concurrent.TimeUnit;
@@ -74,104 +71,165 @@ import com.automation.ezycomp.pageobjects.HomePage_SuperAdmin;
 /// Adding details to companies 		
 		
 		@Test(priority=2)
-		public void compdetails() throws InterruptedException, IOException {
+		public void AddCompanyWithValidDetails() throws InterruptedException, IOException {
 			try {
-				loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));home = new HomePage_SuperAdmin();
-			company = new CompaniesAddnew();
-			logger.logInfo("Entering username and password");
-			loginpage.login("superadmin@ezycomp.com", "test123");
-			loginpage.loginbtn();
-			Thread.sleep(5000);
-			company.Rightarrow();
-			company.Companieslist();
-			company.ManageCompanies();	
-			company.addbutton();
-			company.companycode("Dgli");
+				loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
+				company = new CompaniesAddnew();
+				home = new HomePage_SuperAdmin();
+				logger.logInfo("clicking on manage companies in companies ");
+				home.NAvMenu("Companies");
+				home.NAvMenu("Manage Companies");
+				//company.Companieslist();
+				//company.ManageCompanies();
+				company.addbutton();
+				logger.logInfo("Entering Company Details");
+				company.companycode("abcd");
 			//company.Associatecompany();
 		   // company.copyAssociatecompany();
-			company.companyname("Brayynds");
-			company.businesstypedop();
-			company.Dropdown("IT");
-			company.website("www.virtusa.com");
-			company.esttypedop();
-			company.Dropdown("Factory");
-			company.statusdop();
-			company.Dropdown("Active");
-			company.empdop();
-			company.Dropdown("1-100");
-			Thread.sleep(3000);
-			company.scrollIntoView(company.Logoupload);
-			company.Logoupload("C:\\Users\\sathw\\Downloads//download.png");
-			Thread.sleep(5000);
-			company.create();
-			Thread.sleep(3000);
-			company.save();
-			company.savenxt();
-			Thread.sleep(3000);
-		// spoc details
-			
-			Thread.sleep(5000);
-			company.address();
-			company.statedop();
-			company.Dropdown("Maharashtra");
-			Thread.sleep(3000);
-			company.citydop();
-			company.Dropdown("Mumbai");	
-			company.countrydop();
-			company.Dropdown("India");
-			company.contactno();
-			company.compemail();
-			company.name();
-			company.designation();
-			company.department();
-			company.contactpermob();
-			company.contactperemail();
-			Thread.sleep(5000);
-			company.save();
-			Thread.sleep(3000);
-			company.savenext();
-			
-			// Statutory Details
-			Thread.sleep(5000);
-			company.Pannumber();
-			company.Tannumber();
-			company.FullName();
-			company.pansurname();
-			company.pandesignation();
-			company.panmobile();
-			company.panemail();
-			company.panplace();
-			Thread.sleep(2000);
-			company.gstnumbr();
-			company.save();
-			Thread.sleep(3000);
-			company.savenext();
-			
-			
-			// SMTP Details
-			
-			Thread.sleep(6000);
-			company.email();
-			company.passwrd();
-			company.hos();
-			Thread.sleep(2000);
-			company.por();
-			company.Dropdown("465");
-			Thread.sleep(2000);
-			company.save();
-			company.Saveclose();
-			
-			logger.logPass("shown as per given");
-		    }catch (Exception e) {
-				logger.logFail("Login functionality for super admin is failed"+e.getMessage());
+				company.companyname("Sony");
+				company.businesstypedop();
+				company.Dropdown("IT");
+				company.website("www.virtusa.com");
+				company.esttypedop();
+				company.Dropdown("Factory");
+				company.statusdop();
+				company.Dropdown("Active");
+				company.empdop();
+				company.Dropdown("1-100");
+				//Thread.sleep(3000);
+				company.scrollIntoView(company.Logoupload);
+				company.Logoupload("C:\\Users\\DELL\\Downloads\\abcd.png");
+				Thread.sleep(5000);
+				company.create();
+				Thread.sleep(2000);
+				Assert.assertTrue(home.CreatedSucees());
+				Thread.sleep(3000);
+				//company.save();
+				company.savenxt();
+			// spoc details
+				logger.logInfo("Entering SPOC Details");
+				Thread.sleep(5000);
+				company.address("Maharastra");
+				company.statedop();
+				company.Dropdown("Maharashtra");
+				Thread.sleep(3000);
+				company.citydop();
+				company.Dropdown("Mumbai");
+				company.countrydop();
+				company.Dropdown("India");
+				company.contactno();
+				company.compemail();
+				company.name();
+				company.designation();
+				company.department();
+				company.contactpermob();
+				company.contactperemail();
+				Thread.sleep(5000);
+				company.save();
+				Thread.sleep(3000);
+				company.savenext();
 
+				// Statutory Details
+				logger.logInfo("Entering Statutory Details");
+				Thread.sleep(5000);
+				company.Pannumber();
+				company.Tannumber();
+				company.FullName();
+				company.pansurname();
+				company.pandesignation();
+				company.panmobile();
+				company.panemail();
+				company.panplace();
+				Thread.sleep(2000);
+				company.gstnumbr();
+				company.save();
+				Thread.sleep(3000);
+				company.savenext();
+
+
+				// SMTP Details
+				logger.logInfo("Entering SMTP Details");
+				Thread.sleep(6000);
+				company.email();
+				company.passwrd();
+				company.hos();
+				Thread.sleep(2000);
+				company.por();
+				company.Dropdown("465");
+				Thread.sleep(2000);
+				company.save();
+				company.Saveclose();
+				logger.logPass("shown as per given");
+				}catch (Exception e) {
+					logger.logFail("Login functionality for super admin is failed"+e.getMessage());
+
+			}
+		}
+
+		@Test(priority=3)
+		public void AddingCompanyDuplicate() throws InterruptedException, IOException {
+			try {
+				loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
+				home = new HomePage_SuperAdmin();
+				company = new CompaniesAddnew();
+				home.NAvMenu("Companies");
+				home.NAvMenu("Manage Companies");
+				home.NavArrowclose();
+				//company.Companieslist();
+				//company.ManageCompanies();
+				company.addbutton();
+				logger.logInfo("Entering Company With Duplicate Details");
+				company.companycode("abcd");
+				//company.Associatecompany();
+				// company.copyAssociatecompany();
+				company.companyname("Sony");
+				company.businesstypedop();
+				company.Dropdown("IT");
+				company.website("www.virtusa.com");
+				company.esttypedop();
+				company.Dropdown("Factory");
+				company.statusdop();
+				company.Dropdown("Active");
+				company.empdop();
+				company.Dropdown("1-100");
+				//Thread.sleep(3000);
+				company.scrollIntoView(company.Logoupload);
+				company.Logoupload("C:\\Users\\DELL\\Downloads\\abcd.png");
+				Thread.sleep(5000);
+				company.create();
+				Thread.sleep(2000);
+				Assert.assertTrue(home.AlreadyExixts());
+				logger.logPass("Companies : Duplicates Not taking");
+			} catch (Exception e) {
+				logger.logFail("An exception occurred:"+e.getMessage());
+			}
+
+		}
+
+		@Test(priority=4)
+		public void CompaniesActionsUpdate() throws InterruptedException, IOException {
+			try {
+				loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
+				home = new HomePage_SuperAdmin();
+				company = new CompaniesAddnew();
+				home.NAvMenu("Companies");
+				home.NAvMenu("Manage Companies");
+				home.NavArrowclose();
+				Company.Search("abcd");
+				Thread.sleep(5000);
+				home.Edit("ABCD");
+				company.companyname("Son");
+				company.save();
+				home.waitForElement(home.UpdateSuccess);
+				Assert.assertTrue(home.Update());
+				logger.logPass("Act Page : Edit is Working");
+			} catch (Exception e) {
+				logger.logFail("An exception occurred:"+e.getMessage());
 			}
 		}
 		
 		
-		
-		
-		@Test(priority=3)
+		@Test(priority=5)
 		public void comp() throws InterruptedException, IOException {
 			try {
 			loginpage = new LoginPage();

@@ -94,7 +94,7 @@ public class CompaniesAddnew extends TestBase {
 	 @FindBy(xpath=".//input[@id='copyCompany']")
 	  WebElement copyAsscompany;
 	
-	@FindBy(xpath="(.//input[@class='form-control'])[1]")
+	@FindBy(xpath="(.//input[@class='form-control  '])[1]")
 	  WebElement companyname;
 	
 	public WebElement DropDownValue(String value) {
@@ -390,8 +390,8 @@ public class CompaniesAddnew extends TestBase {
     	copyAsscompany.click();
     }
     
-    public void companyname(String Virtusa) {
-    	companyname.sendKeys(Virtusa);
+    public void companyname(String Value) {
+    	companyname.sendKeys(Value);
     }
     
     public void businesstypedop() {
@@ -420,7 +420,7 @@ public class CompaniesAddnew extends TestBase {
     }
     
    public void Logoupload(String Value) {
-	 Logoupload.sendKeys("C:\\Users\\sathw\\Downloads//download.png");
+	 Logoupload.sendKeys(Value);
    }
    
    public void create() {
@@ -440,8 +440,8 @@ public class CompaniesAddnew extends TestBase {
   // SPOC details--------------------------------------------------------------------
    
    
-   public void address() {
-	   address.sendKeys("Maharastra");
+   public void address(String value) {
+	   address.sendKeys(value);
    }
    
    public void statedop() {
