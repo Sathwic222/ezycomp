@@ -107,8 +107,8 @@ public class Rule extends TestBase {
 			actss.ActionClick();
 			actss.ActionsAdd();
 			Rule.EnterRuleName("");
-			home.SubmitDisabled();
-//			Assert.assertTrue(home.SubmitDisabled());
+//			home.SubmitEnabled();
+			Assert.assertFalse(home.SubmitEnabled());
 			logger.logPass("Adding New Rule with blank fields:- Submit button Disabled as expected for blank fields");
 		} catch (Exception e) {
 			logger.logFail("An exception occurred:"+e.getMessage());

@@ -1,6 +1,5 @@
 package com.automation.ezycomp.testcases;
 
-import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
@@ -107,8 +106,8 @@ public class addacts extends TestBase {
 			actss.ActionClick();
 			actss.ActionsAdd();
 			actss.EnterActName("");
-			home.SubmitDisabled();
-//			Assert.assertTrue(home.SubmitDisabled());
+//			home.SubmitEnabled();
+			Assert.assertFalse(home.SubmitEnabled());
 			logger.logPass("Adding New Act with blank fields:- Submit button Disabled as expected for blank fields");
 		} catch (Exception e) {
 			logger.logFail("An exception occurred:"+e.getMessage());

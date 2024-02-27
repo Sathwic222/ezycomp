@@ -219,7 +219,7 @@ public class HomePage_SuperAdmin extends TestBase {
 		Yes.click();
 	}
 
-	public boolean SubmitDisabled() {
+	public boolean SubmitEnabled() {
 		return Submit.isEnabled();
 	}
 	public boolean CreatedSucees() {

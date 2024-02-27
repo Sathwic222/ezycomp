@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.Iterator;
 
-import com.automation.ezycomp.pageobjects.act;
 import com.automation.ezycomp.utils.ExcelOperations;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
@@ -93,7 +92,7 @@ public class Law extends TestBase {
 			home.NavArrowclose();
 			home.AddNewButton();
 			home.Law(" ", " ");
-			home.SubmitDisabled();
+			Assert.assertFalse(home.SubmitEnabled());
 			logger.logPass("Adding New law with blank fields:- Submit button Disabled as expected for blank fields");
 		} catch (Exception e) {
 			logger.logFail("An exception occurred:"+e.getMessage());

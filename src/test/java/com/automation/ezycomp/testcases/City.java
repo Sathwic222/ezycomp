@@ -102,8 +102,8 @@ public class City extends TestBase {
 			home.NAvMenu("City");
 			home.NavArrowclose();
 			home.AddNewButton();
-			home.SubmitDisabled();
-//			Assert.assertTrue(home.SubmitDisabled());
+//			home.SubmitEnabled();
+			Assert.assertFalse(home.SubmitEnabled());
 			logger.logPass("Adding New Rule with blank fields:- Submit button Disabled as expected for blank fields");
 		} catch (Exception e) {
 			logger.logFail("An exception occurred:"+e.getMessage());

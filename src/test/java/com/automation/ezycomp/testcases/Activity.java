@@ -114,7 +114,7 @@ public class Activity extends TestBase {
 			actss.ActionClick();
 			actss.ActionsAdd();
 			Activity.EnterActivityName(prop.getProperty("EnterActivityNameInput"));
-			home.SubmitDisabled();
+			Assert.assertFalse(home.SubmitEnabled());
 			logger.logPass("Adding New Activity with blank fields:- Submit button Disabled as expected for blank fields");
 		} catch (Exception e) {
 			logger.logFail("An exception occurred:"+e.getMessage());

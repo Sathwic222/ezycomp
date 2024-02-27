@@ -95,7 +95,7 @@ public class State extends TestBase {
 			home.NavArrowclose();
 			home.AddNewButton();
 			State.StateAdd("Tax","");
-			home.SubmitDisabled();
+			Assert.assertFalse(home.SubmitEnabled());
 			logger.logPass("Adding New law with blank fields:- Submit button Disabled as expected for blank fields");
 		} catch (Exception e) {
 			logger.logFail("An exception occurred:"+e.getMessage());
