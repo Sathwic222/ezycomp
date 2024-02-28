@@ -72,18 +72,24 @@ public class ExcelOperations {
         String celltext = null;
         XSSFCell cell = Sheet.getRow(row).getCell(col);
 //		if the cell has string value
-
-        switch(cell.getCellType())
-        {
-            case Cell.CELL_TYPE_STRING:
-                celltext=cell.getStringCellValue();
-                break;
-            case Cell.CELL_TYPE_NUMERIC:
-                celltext= String.valueOf(cell.getNumericCellValue());
-                break;
-            case Cell.CELL_TYPE_BLANK:
-                celltext= "";
-                break;
+        try {
+            switch (cell.getCellType()) {
+                case Cell.CELL_TYPE_STRING:
+                    celltext = cell.getStringCellValue();
+                    break;
+                case Cell.CELL_TYPE_NUMERIC:
+                    celltext = String.valueOf(cell.getNumericCellValue());
+                    break;
+                case Cell.CELL_TYPE_BLANK:
+                    celltext = "";
+                    break;
+                case Cell.CELL_TYPE_ERROR:
+                    celltext = "";
+                    break;
+            }
+        }
+        catch (Exception e){
+            celltext="";
         }
 
         return celltext;

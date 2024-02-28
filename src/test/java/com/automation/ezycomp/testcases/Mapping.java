@@ -307,7 +307,7 @@ public class Mapping extends TestBase {
 			home.NAvMenu("Mappings");
 			home.NavArrowclose();
 			Map.TypeDropdown();
-			home.Dropdown("");
+			//home.Dropdown("");
 			//Iterator<Object[]> tblData = home.getTableData();
 			actss.ActionClick();
 			logger.logInfo("Clicking on Export button");
@@ -322,7 +322,7 @@ public class Mapping extends TestBase {
 			//Assert.assertTrue(home.compareListColumnCount(tblData, xlData));
 			//logger.logPass("Export is working and Column count is matching ");
 			String[] col = {"Act Name","Rule Name","Rule No","Section No","Activity Name","Establishment Type","State Name","Form Name","Compliance Nature","Proof Of Compliance","Penalty","Risk","Maximum Penalty Amount","Impriosonment","Continuing Penalty","Cancellation Suspension Of License","Statutory Authority","Compliance Description","Audit Type"};
-			//Assert.assertTrue(home.compareColumnNames(xlData,col));
+			Assert.assertTrue(home.compareColumnNames(xlData,col));
 			logger.logPass("Export is working and columns names are matching ");
 			Thread.sleep(5000);
 		} catch (Exception e) {
