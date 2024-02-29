@@ -341,6 +341,10 @@ public class HomePage_SuperAdmin extends TestBase {
 	@FindBy(xpath="//div[contains(@class,'custom-tabulator-footer')]//span[contains(text(),'Showing')]")
 	WebElement DataCount;
 
+	public WebElement ddown(String value) {
+		return driver.findElement(By.xpath("//div[contains(@id,'listbox')]//span[contains(text(),'"+value+"')]"));
+	}
+
 
 	public int Showing() throws InterruptedException {
 		String result = DataCount.getText();
@@ -444,6 +448,10 @@ public class HomePage_SuperAdmin extends TestBase {
 			return true;
 		}
 		return false;
+	}
+
+	public void double_dropdown(String value) throws InterruptedException {
+		ddown(value).click();
 	}
 
 
