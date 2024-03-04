@@ -9,6 +9,23 @@ import org.openqa.selenium.support.PageFactory;
 import com.automation.ezycomp.base.TestBase;
 
 public class Locationmapping extends TestBase {
+
+
+
+
+
+
+
+
+
+    @FindBy(xpath=".//span[@title='Edit']")
+    WebElement edit;
+
+    @FindBy(xpath=".//span[@title='Delete']")
+    WebElement delete;
+
+    @FindBy(xpath=".//span[@title='View']")
+    WebElement view;
 	
 	@FindBy(xpath = ".//h4[text()='Home']")
     WebElement Homepage;
@@ -19,7 +36,7 @@ public class Locationmapping extends TestBase {
     @FindBy(xpath ="(.//div[@class='d-flex flex-row align-items-center w-100'])[2]")
      WebElement Companieslist;
     
-    @FindBy(xpath="(.//span[@class=\"sidenav-item-label\"])[12]")
+    @FindBy(xpath="(.//span[@class='sidenav-item-label'])[12]")
      WebElement locmap;
     
     public WebElement DropDownValue(String value) {
@@ -29,11 +46,12 @@ public class Locationmapping extends TestBase {
 	public void Dropdown(String value) {
 		  DropDownValue(value).click();
 	  }
-	
-    @FindBy(xpath="//input[@id='react-select-2-input']")
+
+	//label//small[text()='Company']/../..//input[contains(@id,'react-select-')]
+    @FindBy(xpath="//input[@label//small[text()='Company']/../..//input[contains(@id,'react-select-')]")
     WebElement compdop ;
     	
-    @FindBy(xpath="//input[@id='react-select-3-input']")
+    @FindBy(xpath="//input[@label//small[text()='Associate Company']/../..//input[contains(@id,'react-select-')]")
     WebElement asscompdop ;
     
     @FindBy(xpath="//button[normalize-space()='Actions']")
@@ -96,6 +114,18 @@ public class Locationmapping extends TestBase {
     public Locationmapping() {
     	PageFactory.initElements(driver, this);
     }
+
+
+    public void edit(String Value) {
+        edit.click();
+    }
+
+    public void delete(String Value) {
+        delete.click();
+    }
+    public void view(String Value) {
+        view.click();
+    }
     
     public void Homepage() {
     	Homepage.click();
@@ -109,8 +139,8 @@ public class Locationmapping extends TestBase {
     public void locmap() {
     	locmap.click();
     }
-    public void compdop( String Value) {
-    	compdop.sendKeys( Value);
+    public void compdop(String Value) {
+    	compdop.sendKeys(Value);
     }
     public void asscompdop(String Value) {
     	asscompdop.sendKeys(Value);
@@ -127,23 +157,25 @@ public class Locationmapping extends TestBase {
     public void citydrop(String Value) {
     	citydrop.sendKeys(Value);
     }
-    public void locname() {
-    	locname.sendKeys("Saari");
+    public void locname(String Value) {
+        locname.click();
+        locname.clear();
+    	locname.sendKeys(Value);
     }
-    public void loccode() {
-    	loccode.sendKeys("sfia");
+    public void loccode(String Value) {
+    	loccode.sendKeys(Value);
     }
-    public void conpername() {
-    	conpername.sendKeys("Munna");
+    public void conpername(String Value) {
+    	conpername.sendKeys(Value);
     }
-    public void mobile() {
-    	mobile.sendKeys("9900776655");
+    public void mobile(String Value) {
+    	mobile.sendKeys(Value);
     }
-    public void email() {
-    	email.sendKeys("munnna12@gmail.com");
+    public void email(String Value) {
+    	email.sendKeys(Value);
     }
-    public void address() {
-    	address.sendKeys("1-12,ravind colony,anderi,mumbai");
+    public void address(String Value) {
+    	address.sendKeys(Value);
     }
     public void submitbtn() {
     	submitbtn.click();

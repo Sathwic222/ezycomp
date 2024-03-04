@@ -38,7 +38,7 @@ public class LocmappingTestcase extends TestBase {
 	}
 // Adding locations to companies
 	@Test(priority = 1)
-	public void locationmapping() throws InterruptedException, IOException {
+	public void Add_comp_locationmapping() throws InterruptedException, IOException {
 		try {
 			loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
 			home = new HomePage_SuperAdmin();
@@ -66,12 +66,12 @@ public class LocmappingTestcase extends TestBase {
 			mapping.citydrop("Barshi");
 			mapping.Dropdown("Barshi");
 
-			mapping.locname();
-			mapping.loccode();
-			mapping.conpername();
-			mapping.mobile();
-			mapping.email();
-			mapping.address();
+			mapping.locname("AutoMatIom");
+			mapping.loccode("audo");
+			mapping.conpername("munna");
+			mapping.mobile("789012345");
+			mapping.email("sathwic222@gmail.com");
+			mapping.address("1-12,ravind colony,anderi,mumbai");
 			mapping.submitbtn();
 			//Assert.assertTrue();
 			logger.logPass("Add location for company is passed");
@@ -82,7 +82,7 @@ public class LocmappingTestcase extends TestBase {
 
 	// location will be deleted
 	@Test(priority = 2)
-	public void locmap() throws InterruptedException, IOException {
+	public void loc_delete() throws InterruptedException, IOException {
 		try {
 			loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
 			home = new HomePage_SuperAdmin();
@@ -111,7 +111,7 @@ public class LocmappingTestcase extends TestBase {
 	}
        // Searching the location,contact
 		@Test(priority = 3)
-		public void locmap3() throws InterruptedException, IOException {
+		public void search() throws InterruptedException, IOException {
 			try {
 				loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
 				home = new HomePage_SuperAdmin();
@@ -136,13 +136,98 @@ public class LocmappingTestcase extends TestBase {
 				logger.logFail(" location for company is failed" + e.getMessage());
 
 
-
 			}
+
 		}
 
+			@Test(priority = 4)
+			public void invalid_search() throws InterruptedException, IOException {
+				try {
+					loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
+					home = new HomePage_SuperAdmin();
+					loginpage = new LoginPage();
+					mapping = new Locationmapping();
+					logger.logInfo("Entering username and password");
+					mapping.Homepage();
+					//mapping.NavDoubleright();
+					mapping.Companieslist();
+					mapping.locmap();
+					mapping.compdop("sathwic IT solutions");
+					mapping.Dropdown("sathwic IT solutions");
+					driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+					mapping.asscompdop("Sathwic IT Services");
+					mapping.Dropdown("Sathwic IT Services");
+
+					driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+					mapping.search("tyvyv12..0");
+
+					logger.logPass(" location for company is passed");
+				} catch (Exception e) {
+					logger.logFail(" location for company is failed" + e.getMessage());
+
+				}
+			}
+				@Test(priority = 5)
+				public void Edit_actions() throws InterruptedException, IOException {
+					try {
+						loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
+						home = new HomePage_SuperAdmin();
+						loginpage = new LoginPage();
+						mapping = new Locationmapping();
+						logger.logInfo("Entering username and password");
+						mapping.Homepage();
+						//mapping.NavDoubleright();
+						mapping.Companieslist();
+						mapping.locmap();
+						driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
+						mapping.compdop("Etv AndhraPradesh");
+						mapping.Dropdown("Etv AndhraPradesh");
+						driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
+						mapping.asscompdop("Etv Win");
+						mapping.Dropdown("Etv Win");
+						driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
+						mapping.edit();
+						mapping.locname("Telegram_12_qwe");
+						mapping.submitbtn();
 
 
 
+
+						logger.logPass(" location for company is passed");
+					} catch (Exception e) {
+						logger.logFail(" location for company is failed" + e.getMessage());
+
+					}
+
+			}
+	@Test(priority = 6)
+	public void View_actions() throws InterruptedException, IOException {
+		try {
+			loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
+			home = new HomePage_SuperAdmin();
+			loginpage = new LoginPage();
+			mapping = new Locationmapping();
+			logger.logInfo("Entering username and password");
+			mapping.Homepage();
+			//mapping.NavDoubleright();
+			mapping.Companieslist();
+			mapping.locmap();
+			driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+			mapping.compdop("Etv AndhraPradesh");
+			mapping.Dropdown("Etv AndhraPradesh");
+			driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+			mapping.asscompdop("Etv News");
+			mapping.Dropdown("Etv News");
+			driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+			mapping.view();
+
+			logger.logPass(" location for company is passed");
+		} catch (Exception e) {
+			logger.logFail(" location for company is failed" + e.getMessage());
+
+		}
+
+	}
 
 	@AfterMethod
 	public void tearDown() {

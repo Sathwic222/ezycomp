@@ -16,44 +16,47 @@ import org.testng.annotations.AfterMethod;
 	import com.automation.ezycomp.functionLabrary.ReportLog;
 
 	import junit.framework.Assert;
+
+	import java.util.PriorityQueue;
 	import java.util.concurrent.TimeUnit;
 
 	public class CompaniesTestcase extends TestBase {
-		
+
 		LoginPage loginpage;
-		HomePage_SuperAdmin home; 
+		HomePage_SuperAdmin home;
 		ReportLog logger;
 		Companies Company;
 		CompaniesAddnew company;
-		
+
 		@BeforeSuite
 		public void testSuite() {
 			logger = new ReportLog(driver);
 		}
-		
-		@BeforeMethod 
+
+		@BeforeMethod
 		public void setup(Method m) {
 			logger.startTest(m.getName());
 			initialization();
 			String url = prop.getProperty("url");
 			driver.get(url);
 			driver.manage().window().maximize();
-			
-			
+
+
 		}
-		@Test(priority=1)
-		 public void Search() throws InterruptedException, IOException {
+
+		@Test(priority = 1)
+		public void Search() throws InterruptedException, IOException {
 			try {
 				loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
 				home = new HomePage_SuperAdmin();
-				loginpage = new LoginPage();
+				//loginpage = new LoginPage();
 				Company = new Companies();
 				company = new CompaniesAddnew();
 				// logger.logInfo("Entering username and password");
-				loginpage.login("superadmin@ezycomp.com", "test123");
-				loginpage.loginbtn();
-				Thread.sleep(5000);
-				Company.Rightarrow();
+				//loginpage.login("superadmin@ezycomp.com", "test123");
+				//loginpage.loginbtn();
+				//Thread.sleep(5000);
+				//Company.Rightarrow();
 				Company.Companieslist();
 				Company.ManageCompanies();
 				Company.Search("filpkart");
@@ -61,16 +64,15 @@ import org.testng.annotations.AfterMethod;
 				//Assert.assertTrue();
 				logger.logPass("Login functionality for super admin is passed");
 			} catch (Exception e) {
-				logger.logFail("Login functionality for super admin is failed"+e.getMessage());
-				
+				logger.logFail("Login functionality for super admin is failed" + e.getMessage());
+
 			}
-			
-			
-		 }
-		
+
+		}
+
 /// Adding details to companies 		
-		
-		@Test(priority=2)
+
+		@Test(priority = 2)
 		public void AddCompanyWithValidDetails() throws InterruptedException, IOException {
 			try {
 				loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
@@ -83,11 +85,14 @@ import org.testng.annotations.AfterMethod;
 				//company.ManageCompanies();
 				company.addbutton();
 				logger.logInfo("Entering Company Details");
-				company.companycode("abcd");
-			//company.Associatecompany();
-		   // company.copyAssociatecompany();
-				company.companyname("Sony");
-				company.businesstypedop();
+				company.companycode("Cent");
+				//company.Associatecompany();
+				Thread.sleep(5000);
+                //company.Parentcompdop("Telegram");
+//              //  company.Dropdown("Telegram");
+				//company.copyAssociatecompany();
+				company.companyname("Central");
+				company.businesstypedop("IT");
 				company.Dropdown("IT");
 				company.website("www.virtusa.com");
 				company.esttypedop();
@@ -98,7 +103,7 @@ import org.testng.annotations.AfterMethod;
 				company.Dropdown("1-100");
 				//Thread.sleep(3000);
 				company.scrollIntoView(company.Logoupload);
-				company.Logoupload("C:\\Users\\DELL\\Downloads\\abcd.png");
+				company.Logoupload("C:\\Users\\sathw\\OneDrive\\Pictures\\download (3).png");
 				Thread.sleep(5000);
 				company.create();
 				Thread.sleep(2000);
@@ -106,7 +111,7 @@ import org.testng.annotations.AfterMethod;
 				Thread.sleep(3000);
 				//company.save();
 				company.savenxt();
-			// spoc details
+				// spoc details---------------------------------
 				logger.logInfo("Entering SPOC Details");
 				Thread.sleep(5000);
 				company.address("Maharastra");
@@ -160,13 +165,13 @@ import org.testng.annotations.AfterMethod;
 				company.save();
 				company.Saveclose();
 				logger.logPass("shown as per given");
-				}catch (Exception e) {
-					logger.logFail("Login functionality for super admin is failed"+e.getMessage());
+			} catch (Exception e) {
+				logger.logFail("Login functionality for super admin is failed" + e.getMessage());
 
 			}
 		}
 
-		@Test(priority=3)
+		@Test(priority = 3)
 		public void AddingCompanyDuplicate() throws InterruptedException, IOException {
 			try {
 				loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
@@ -183,7 +188,7 @@ import org.testng.annotations.AfterMethod;
 				//company.Associatecompany();
 				// company.copyAssociatecompany();
 				company.companyname("Sony");
-				company.businesstypedop();
+				company.businesstypedop("IT");
 				company.Dropdown("IT");
 				company.website("www.virtusa.com");
 				company.esttypedop();
@@ -194,71 +199,117 @@ import org.testng.annotations.AfterMethod;
 				company.Dropdown("1-100");
 				//Thread.sleep(3000);
 				company.scrollIntoView(company.Logoupload);
-				company.Logoupload("C:\\Users\\DELL\\Downloads\\abcd.png");
+				company.Logoupload("C:\\Users\\sathw\\OneDrive\\Pictures\\download (3).png");
 				Thread.sleep(5000);
 				company.create();
 				Thread.sleep(2000);
 				Assert.assertTrue(home.AlreadyExixts());
 				logger.logPass("Companies : Duplicates Not taking");
 			} catch (Exception e) {
-				logger.logFail("An exception occurred:"+e.getMessage());
+				logger.logFail("An exception occurred:" + e.getMessage());
 			}
 
 		}
 
-		@Test(priority=4)
+		@Test(priority = 4)
 		public void CompaniesActionsUpdate() throws InterruptedException, IOException {
 			try {
 				loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
 				home = new HomePage_SuperAdmin();
+				Company = new Companies();
 				company = new CompaniesAddnew();
-				home.NAvMenu("Companies");
-				home.NAvMenu("Manage Companies");
-				home.NavArrowclose();
-				Company.Search("abcd");
+				Company.Companieslist();
+				Company.ManageCompanies();
+				// home.NavArrowclose();
+				Company.Search("Medicover");
+				logger.logInfo("Update the details in companies");
 				Thread.sleep(5000);
-				home.Edit("ABCD");
-				company.companyname("Son");
+				company.edit("Medicover");
+				//company.companyname1();
+				//company.website("www.medicover.com");
+				company.businesstypedop("NonIT");
 				company.save();
 				home.waitForElement(home.UpdateSuccess);
 				Assert.assertTrue(home.Update());
-				logger.logPass("Act Page : Edit is Working");
+				logger.logPass("Companies Page : Edit is Working");
 			} catch (Exception e) {
-				logger.logFail("An exception occurred:"+e.getMessage());
+				logger.logFail("An exception occurred:" + e.getMessage());
 			}
 		}
-		
-		
-		@Test(priority=5)
+
+
+		@Test(priority = 5)
 		public void comp() throws InterruptedException, IOException {
 			try {
-			loginpage = new LoginPage();
-			home = new HomePage_SuperAdmin();
-			company = new CompaniesAddnew();
-			
-			logger.logInfo("Entering username and password");
-			loginpage.login("superadmin@ezycomp.com", "test123");
-			loginpage.loginbtn();
-			Thread.sleep(5000);
-			company.Rightarrow();
-			company.Companieslist();
-			company.ManageCompanies();	
-			company.Search();
-			driver.manage().timeouts().implicitlyWait(4,TimeUnit.SECONDS);
-			company.delete();
-			driver.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS);
-			company.yes();
-			
-			
-			logger.logPass("Company details will be deleted ");
-		    }catch (Exception e) {
-				logger.logFail("Login functionality for super admin is failed"+e.getMessage());
+				loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
+				home = new HomePage_SuperAdmin();
+				Company = new Companies();
+				company = new CompaniesAddnew();
+				Company.Companieslist();
+				Company.ManageCompanies();
+				// home.NavArrowclose();
+				company.Search("Brands");
+				driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
+				company.delete("Brands");
+				driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+				company.yes();
+				logger.logPass("Company details will be deleted ");
+			} catch (Exception e) {
+				logger.logFail("Login functionality for super admin is failed" + e.getMessage());
+			}
 
+		}
+
+		@Test(priority = 6)
+		public void invalidSearch() throws InterruptedException, IOException {
+			try {
+				loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
+				home = new HomePage_SuperAdmin();
+				Company = new Companies();
+				company = new CompaniesAddnew();
+				Company.Companieslist();
+				Company.ManageCompanies();
+				Company.Search("filart");
+				Thread.sleep(5000);
+				//Assert.assertTrue();
+				logger.logPass("Companies Page : invalid data search is Working");
+			} catch (Exception e) {
+				logger.logFail("An exception occurred" + e.getMessage());
 
 			}
+
 		}
-			
-		
+
+
+		@Test(priority = 7)
+		public void CompaniesActionsview() throws InterruptedException, IOException {
+			try {
+				loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
+				home = new HomePage_SuperAdmin();
+				company = new CompaniesAddnew();
+				Company.Companieslist();
+				Company.ManageCompanies();
+				// home.NavArrowclose();
+				Company.Search("Medicover");
+				Thread.sleep(5000);
+				company.view("Medicover");
+				Thread.sleep(5000);
+				company.closbtn();
+				home.waitForElement(home.UpdateSuccess);
+				Assert.assertTrue(home.Update());
+				logger.logPass("Companies Page : Edit is Working");
+			} catch (Exception e) {
+				logger.logFail("An exception occurred:" + e.getMessage());
+			}
+
+	}
+
+
+
+
+
+
+
 		@AfterMethod
 		public void tearDown() {
 			driver.quit();

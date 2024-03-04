@@ -1,5 +1,6 @@
 package com.automation.ezycomp.pageobjects;
 
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -35,7 +36,9 @@ public class CompaniesAddnew extends TestBase {
 	
 	@FindBy(xpath=".//span[@title='View']")
 	 WebElement view;
-	
+
+
+
 	@FindBy(xpath="(.//span[contains(@class,'icon-external-link')])[1]")
 	 WebElement websitenav;
 	
@@ -44,10 +47,11 @@ public class CompaniesAddnew extends TestBase {
 	@FindBy(xpath=".//button[text()='Yes']")
 	 WebElement yesbtn;
 	
-	//@FindBy(xpath=".//button[text()='No']")
-      //  WebElement nobtn;
+	@FindBy(xpath=".//button[text()='No']")
+	WebElement nobtn;
 	
-	
+	@FindBy(xpath="//button[text()='Close']")
+	 WebElement closebtn;
 	
 	
 	
@@ -65,7 +69,7 @@ public class CompaniesAddnew extends TestBase {
     @FindBy(xpath ="(.//div[@class='d-flex flex-row align-items-center w-100'])[2]")
      WebElement Companieslist;
 
-    @FindBy(xpath ="(.//span[@class=\"sidenav-item-label\"])[10]")
+    @FindBy(xpath ="(.//span[@class='sidenav-item-label' ])[10]")
      WebElement ManageCompanies;
     
     @FindBy(xpath="//span[text()='Associate Companies']")
@@ -79,7 +83,7 @@ public class CompaniesAddnew extends TestBase {
     @FindBy(xpath=".//span[@title='download']")
      WebElement Exportbtn;
 
-	@FindBy(xpath=".//button[@class=\"px-3 ms-auto text-nowrap btn btn-primary\"]")
+	@FindBy(xpath=".//button[@class='px-3 ms-auto text-nowrap btn btn-primary']")
 	  WebElement addbtn;
 	
 	
@@ -90,11 +94,14 @@ public class CompaniesAddnew extends TestBase {
 	
 	@FindBy(xpath=".//input[@id='isAssociateCompany']")
 	  WebElement Asscompany;
+
+	@FindBy(xpath="//span[@id='react-select-60-live-region']")
+	WebElement Parentcompdop;
 	
 	 @FindBy(xpath=".//input[@id='copyCompany']")
 	  WebElement copyAsscompany;
 	
-	@FindBy(xpath="(.//input[@class='form-control  '])[1]")
+	@FindBy(xpath=".//input[@name='name']")
 	  WebElement companyname;
 	
 	public WebElement DropDownValue(String value) {
@@ -142,16 +149,16 @@ public class CompaniesAddnew extends TestBase {
 	
 	// SPOC Details webelements
 	
-	@FindBy(xpath=".//textarea[@name=\"companyAddress\"]")
+	@FindBy(xpath=".//textarea[@name='companyAddress']")
 	  WebElement address;
 	
-	@FindBy(xpath=".//input[@id=\"react-select-7-input\"]")
+	@FindBy(xpath=".//input[@id='react-select-7-input']")
 	  WebElement statedop;
 	
-	@FindBy(xpath=".//input[@id=\"react-select-8-input\"]")
+	@FindBy(xpath=".//input[@id='react-select-8-input']")
 	  WebElement citydop;
 	
-	@FindBy(xpath=".//input[@id=\"react-select-9-input\"]")
+	@FindBy(xpath=".//input[@id='react-select-9-input']")
 	  WebElement countrydop;
 	
 	@FindBy(xpath=".//input[@name='contactNumber']")
@@ -175,10 +182,10 @@ public class CompaniesAddnew extends TestBase {
 	@FindBy(xpath=".//input[@name='contactPersonEmail']")
 	  WebElement contactperemail ;
 	
-	@FindBy(xpath="//button[@class=\"px-4 btn btn-primary\"]")
+	@FindBy(xpath="//button[@class='px-4 btn btn-primary']")
 	WebElement savebtn;
 	
-	@FindBy(xpath="//button[@class=\"px-4 ms-3 btn btn-primary\"]")
+	@FindBy(xpath="//button[@class='px-4 ms-3 btn btn-primary']")
 	WebElement savenextbtn;
 	
 	
@@ -260,7 +267,7 @@ public class CompaniesAddnew extends TestBase {
 	//SMTP DETAILS
 	
 	// @FindBy(xpath=".//input[@name='emailAddress']")
-	//WebElement EmailAddress;
+	// WebElement EmailAddress;
 	
 	@FindBy(xpath=".//input[contains(@name,'email')]")
 	WebElement Email;
@@ -286,10 +293,10 @@ public class CompaniesAddnew extends TestBase {
 	
 	@FindBy(xpath=".//button[text()='Cancel']")
 	WebElement Cancel;
-	
-	
-	
-	
+
+
+
+
 	
 	
 	
@@ -303,12 +310,17 @@ public class CompaniesAddnew extends TestBase {
 	public CompaniesAddnew() {
 		PageFactory.initElements(driver, this);
 	}
-	
+
+
+
+
 	// Sorting buttons--------------------------------------
 	
 	public void compname() {
 		compname.click();
 	}
+
+
 	public void compcode() {
 		compcode.click();
 	}
@@ -322,18 +334,21 @@ public class CompaniesAddnew extends TestBase {
 	
 	// Action buttons-----------------------------
 	
-	public void edit() {
+	public void edit(String Value) {
 		edit.click();
 	}
 	
-	public void delete() {
+	public void delete(String Value) {
 		delete.click();
 	}
-	public void view() {
+	public void view(String Value) {
 		view.click();
 	}
+
+
 	
-	public void webnav() {
+	public void webnav (String Value) {
+
 		websitenav.click();
 	}
 	
@@ -344,9 +359,15 @@ public class CompaniesAddnew extends TestBase {
 		yesbtn.click();
 	}
 	
-	//public void nobtn() {
-	//	nobtn.click();
-//	}
+	public void nobtn() {
+		nobtn.click();
+	}
+
+		public void closbtn() {
+			closebtn.click();
+		}
+
+
 	
 	//-----------------------------------------------------------
 	public void Rightarrow() {
@@ -367,8 +388,8 @@ public class CompaniesAddnew extends TestBase {
 	
 	// SEARCH //----------
 	
-	public void Search() {
-		Search.sendKeys("Viryuf");
+	public void Search(String Value) {
+		Search.sendKeys(Value);
 	}
 	
 	public void Exportbtn() {
@@ -385,21 +406,29 @@ public class CompaniesAddnew extends TestBase {
     public void Associatecompany() {
     	Asscompany.click();
     }
-    
+     public void Parentcompdop(String Value){
+		Parentcompdop.sendKeys(Value);
+	 }
     public void copyAssociatecompany() {
     	copyAsscompany.click();
     }
     
     public void companyname(String Value) {
+		companyname.click();
+		companyname.clear();
     	companyname.sendKeys(Value);
     }
-    
-    public void businesstypedop() {
-    	businesstypedop.click();
+
+    public void businesstypedop(String Value) {
+		businesstypedop.click();
+    	businesstypedop.clear();
+		businesstypedop.sendKeys(Value);
     }
     
    public void website(String Value) {
-   website.sendKeys("www.virtusa.com");
+
+   website.clear();
+   website.sendKeys(Value);
     }
 
     public void esttypedop() {
@@ -458,7 +487,7 @@ public class CompaniesAddnew extends TestBase {
     }
     
     public void compemail() {
-    	compemail.sendKeys("sathwik@gmailcom");
+    	compemail.sendKeys("sathwic333@gmailcom");
     }
     
     public void name() {
