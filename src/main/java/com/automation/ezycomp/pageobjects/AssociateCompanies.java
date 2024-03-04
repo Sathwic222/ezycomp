@@ -118,16 +118,16 @@ public class AssociateCompanies extends TestBase {
 	@FindBy(xpath=".//input[@placeholder='Enter Website']")
 	WebElement website;
 
-	@FindBy(xpath="(//input[@role='combobox'])[2]")
+	@FindBy(xpath="(//input[@role='combobox'])[3]") public
 	WebElement esttypedop;
 
-	@FindBy(xpath="(//input[@role='combobox'])[3]")
+	@FindBy(xpath="(//input[@role='combobox'])[4]")
 	WebElement statusdop;
 
-	@FindBy(xpath="(//input[@role='combobox'])[4]")
+	@FindBy(xpath="(//input[@role='combobox'])[5]")
 	WebElement empdop;
 
-	@FindBy(xpath=".//input[@name='file']") public
+	@FindBy(xpath=".//input[@name='file']")
 	WebElement Logoupload;
 
 	public void Logoupload1(String value) throws InterruptedException {
@@ -314,7 +314,7 @@ public class AssociateCompanies extends TestBase {
 
 	// Sorting buttons--------------------------------------
 
-	public void compname() {
+	public void companyname () {
 		compname.click();
 	}
 
@@ -412,20 +412,20 @@ public class AssociateCompanies extends TestBase {
 	}
 
 	public void companyname(String Value) {
-		companyname.click();
-		companyname.clear();
+		//companyname.click();
+		//companyname.clear();
 		companyname.sendKeys(Value);
 	}
 
 	public void businesstypedop(String Value) {
-		businesstypedop.click();
-		businesstypedop.clear();
+		//businesstypedop.click();
+		//businesstypedop.clear();
 		businesstypedop.sendKeys(Value);
 	}
 
 	public void website(String Value) {
 
-		website.clear();
+		//website.clear();
 		website.sendKeys(Value);
 	}
 

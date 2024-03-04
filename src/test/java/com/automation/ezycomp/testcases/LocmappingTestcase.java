@@ -50,28 +50,29 @@ public class LocmappingTestcase extends TestBase {
 			mapping.Companieslist();
 			mapping.locmap();
 			Thread.sleep(3000);
-			mapping.compdop("ETV AndhraPradesh");
-			mapping.Dropdown("Etv AndhraPradesh");
+			mapping.compdop("Filpkart");
+			mapping.Dropdown("Filpkart");
 			Thread.sleep(3000);
-			mapping.asscompdop("ETV News");
-			mapping.Dropdown("ETV News");
+			mapping.asscompdop("BigSales");
+			mapping.Dropdown("BigSales");
 
 			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 			mapping.actionbtn();
 			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 			mapping.ActionsButtonAdd();
-			mapping.statedrop("Maharashtra");
-			mapping.Dropdown("Maharashtra");
+			mapping.statedrop("Telangana");
+			mapping.Dropdown("Telangana");
 			driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-			mapping.citydrop("Barshi");
-			mapping.Dropdown("Barshi");
+			mapping.citydrop("Hyderabad");
+			mapping.Dropdown("Hyderabad");
 
 			mapping.locname("AutoMatIom");
 			mapping.loccode("audo");
 			mapping.conpername("munna");
-			mapping.mobile("789012345");
+			mapping.mobile("7890123453");
 			mapping.email("sathwic222@gmail.com");
 			mapping.address("1-12,ravind colony,anderi,mumbai");
+			Thread.sleep(5000);
 			mapping.submitbtn();
 			//Assert.assertTrue();
 			logger.logPass("Add location for company is passed");

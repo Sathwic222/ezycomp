@@ -48,10 +48,10 @@ public class Locationmapping extends TestBase {
 	  }
 
 	//label//small[text()='Company']/../..//input[contains(@id,'react-select-')]
-    @FindBy(xpath="//input[@label//small[text()='Company']/../..//input[contains(@id,'react-select-')]")
+    @FindBy(xpath="(//input[@role='combobox'])[1]")
     WebElement compdop ;
     	
-    @FindBy(xpath="//input[@label//small[text()='Associate Company']/../..//input[contains(@id,'react-select-')]")
+    @FindBy(xpath="(//input[@role='combobox'])[2]")
     WebElement asscompdop ;
     
     @FindBy(xpath="//button[normalize-space()='Actions']")
@@ -85,10 +85,10 @@ public class Locationmapping extends TestBase {
     WebElement address ;
    
     
-    @FindBy(xpath=".//button[@class='px-4 btn btn-primary']")
+    @FindBy(xpath="//button[text()='Submit']")
     WebElement submitbtn ;
      
-    @FindBy(xpath=".//button[@class='btn btn-outline-secondary px-4 btn btn-outline-secondary']")
+    @FindBy(xpath="//button[text()='Cancel']")
      WebElement cancelbtn;
 
    // ---------------------------

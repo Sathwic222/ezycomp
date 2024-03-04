@@ -55,24 +55,21 @@ public class AuditTestCase extends TestBase {
 	        
 	        audit.Auditschedule();
 
-	        audit.companydop("Etv AndhraPradesh");
-			Thread.sleep(3000);
-	        audit.Dropdown("Etv AndhraPradesh");
+	        audit.companydop("Filpkart");
+	        audit.Dropdown("Filpkart");
             Thread.sleep(3000);
-	        audit.asscompdop("Etv Win");
+	        audit.asscompdop("BigSales");
+	        audit.Dropdown("BigSales");
 			Thread.sleep(3000);
-	        audit.Dropdown("Etv Win");
-			Thread.sleep(3000);
-	        audit.locdop("World (MH-AG-WRD)");
-			Thread.sleep(3000);
-	        audit.Dropdown("World (MH-AG-WRD)");
+	        audit.locdop("AutoMatIom (TG-HYD-AUDO)");
+	        audit.Dropdown("AutoMatIom (TG-HYD-AUDO)");
 			Thread.sleep(3000);
 	       // audit.actdop("Display,Returns,Audit");
 
 	       // audit.Dropdown("Display,Returns,Audit");
 
 	        home.scrollIntoView(audit.month);
-	        audit.month("Feb, 2024");
+	        audit.month("Feb, 2024 ~ Mar, 2024");
 
 	        audit.Exportbtn();
 			Thread.sleep(5000);

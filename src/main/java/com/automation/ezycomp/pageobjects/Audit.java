@@ -5,6 +5,7 @@ import org.apache.xmlbeans.impl.xb.xsdschema.Public;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -32,16 +33,16 @@ public class Audit extends TestBase {
 		  DropDownValue(value).click();
 	  }
 	
-	@FindBy(xpath="//input[@id='react-select-2-input']")
+	@FindBy(xpath="(//input[@role='combobox'])[1]")
 	 WebElement companydop;
 	
-	@FindBy(xpath="//input[@id='react-select-3-input']")
+	@FindBy(xpath="(//input[@role='combobox'])[2]")
 	 WebElement asscompdop;
 	
-	@FindBy(xpath="//input[@id='react-select-4-input']")
+	@FindBy(xpath="(//input[@role='combobox'])[3]")
 	 WebElement locdop;
 	
-	@FindBy(xpath="//input[@id='react-select-5-input']")
+	@FindBy(xpath="(//input[@role='combobox'])[4]")
 	 WebElement actdop;
 	
 	@FindBy(xpath="//input[@class='rmdp-input']")
@@ -93,6 +94,8 @@ public class Audit extends TestBase {
 	}
 	public void month(String Value) {
 		month.click();
+		Actions act = new Actions(driver);
+		act.doubleClick(month).perform();
 	}
 	public void Exportbtn() {
 		Exportbtn.click();

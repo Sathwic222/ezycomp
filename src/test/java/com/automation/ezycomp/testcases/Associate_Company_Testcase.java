@@ -61,6 +61,8 @@ public class Associate_Company_Testcase extends TestBase {
             company.businesstypedop("IT");
             company.Dropdown("IT");
             company.website("www.filpkartsales.com");
+            company.scrollIntoView(company.esttypedop);
+            Thread.sleep(5000);
             company.esttypedop("Factory");
             company.Dropdown("Factory");
             Thread.sleep(3000);
@@ -69,7 +71,7 @@ public class Associate_Company_Testcase extends TestBase {
             company.empdop("1-100");
             company.Dropdown("1-100");
             //Thread.sleep(3000);
-            company.scrollIntoView(company.Logoupload);
+           // company.scrollIntoView(company.Logoupload);
             company.Logoupload("C:\\Users\\sathw\\OneDrive\\Pictures\\download (3).png");
             Thread.sleep(5000);
             company.create();
