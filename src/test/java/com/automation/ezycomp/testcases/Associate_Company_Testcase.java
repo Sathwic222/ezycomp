@@ -3,10 +3,7 @@ package com.automation.ezycomp.testcases;
 import com.automation.ezycomp.base.TestBase;
 
 import com.automation.ezycomp.functionLabrary.ReportLog;
-import com.automation.ezycomp.pageobjects.AssociateCompanies;
-import com.automation.ezycomp.pageobjects.Companies;
-import com.automation.ezycomp.pageobjects.HomePage_SuperAdmin;
-import com.automation.ezycomp.pageobjects.LoginPage;
+import com.automation.ezycomp.pageobjects.*;
 import org.testng.annotations.*;
 
 import java.io.IOException;
@@ -20,8 +17,9 @@ public class Associate_Company_Testcase extends TestBase {
     HomePage_SuperAdmin home;
     ReportLog logger;
     Companies Company;
+    CompaniesAddnew managecompany;
 
-    AssociateCompanies company;
+    AssociateCompanies associateCompanies;
 
     @BeforeSuite
     public void testSuite() {
@@ -44,101 +42,158 @@ public class Associate_Company_Testcase extends TestBase {
 
             loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
             home = new HomePage_SuperAdmin();
-            company = new AssociateCompanies();
-            logger.logInfo("clicking on manage companies in companies ");
+            associateCompanies = new AssociateCompanies();
+            managecompany = new CompaniesAddnew();
+            Company = new Companies();
+            logger.logInfo("clicking on Associate companies in companies ");
             home.NAvMenu("Companies");
             home.NAvMenu("Manage Companies");
-            company.addbutton();
-            logger.logInfo("Entering Company Details");
-            company.companycode("bsal");
-            company.Associatecompany();
             Thread.sleep(3000);
-            company.Parentcompdop("Filpkart");
-            company.Dropdown("Filpkart");
+            managecompany.addneww();
+            Thread.sleep(3000);
+            logger.logInfo("Entering Company Details");
+            associateCompanies.companycode("salt");
+            associateCompanies.isassociatecomp();
+            Thread.sleep(3000);
+            associateCompanies.Parentcompdop("Filpkart");
+            associateCompanies.Dropdown("Filpkart");
 
             //company.copyAssociatecompany();
-            company.companyname("BigSales");
-            company.businesstypedop("IT");
-            company.Dropdown("IT");
-            company.website("www.filpkartsales.com");
-            company.scrollIntoView(company.esttypedop);
+            associateCompanies.companyname("BigSale");
+            associateCompanies.businesstypedop("IT");
+            associateCompanies.Dropdown("IT");
+            associateCompanies.website("www.filpkartsales.com");
+            associateCompanies.scrollIntoView(associateCompanies.esttypedop);
             Thread.sleep(5000);
-            company.esttypedop("Factory");
-            company.Dropdown("Factory");
+            associateCompanies.esttypedop("Factory");
+            associateCompanies.Dropdown("Factory");
             Thread.sleep(3000);
-            company.statusdop("Active");
-            company.Dropdown("Active");
-            company.empdop("1-100");
-            company.Dropdown("1-100");
+            associateCompanies.statusdop("Active");
+            associateCompanies.Dropdown("Active");
+            associateCompanies.empdop("1-100");
+            associateCompanies.Dropdown("1-100");
             //Thread.sleep(3000);
-           // company.scrollIntoView(company.Logoupload);
-            company.Logoupload("C:\\Users\\sathw\\OneDrive\\Pictures\\download (3).png");
+            // company.scrollIntoView(company.Logoupload);
+            associateCompanies.Logoupload("C:\\Users\\sathw\\OneDrive\\Pictures\\download (3).png");
             Thread.sleep(5000);
-            company.create();
+            associateCompanies.create();
             Thread.sleep(2000);
             assertTrue(home.CreatedSucees());
             Thread.sleep(3000);
             //company.save();
-            company.savenxt();
+            associateCompanies.savenxt();
             // spoc details---------------------------------
             logger.logInfo("Entering SPOC Details");
             Thread.sleep(5000);
-            company.address("Maharastra");
-            company.statedop();
-            company.Dropdown("Maharashtra");
+            associateCompanies.address("Maharastra");
+            associateCompanies.statedop();
+            associateCompanies.Dropdown("Maharashtra");
             Thread.sleep(3000);
-            company.citydop();
-            company.Dropdown("Mumbai");
-            company.countrydop();
-            company.Dropdown("India");
-            company.contactno();
-            company.compemail();
-            company.name();
-            company.designation();
-            company.department();
-            company.contactpermob();
-            company.contactperemail();
+            associateCompanies.citydop();
+            associateCompanies.Dropdown("Mumbai");
+            associateCompanies.countrydop();
+            associateCompanies.Dropdown("India");
+            associateCompanies.contactno();
+            associateCompanies.compemail();
+            associateCompanies.name();
+            associateCompanies.designation();
+            associateCompanies.department();
+            associateCompanies.contactpermob();
+            associateCompanies.contactperemail();
             Thread.sleep(5000);
-            company.save();
+            associateCompanies.save();
             Thread.sleep(3000);
-            company.savenext();
+            associateCompanies.savenext();
 
             // Statutory Details
             logger.logInfo("Entering Statutory Details");
             Thread.sleep(5000);
-            company.Pannumber();
-            company.Tannumber();
-            company.FullName();
-            company.pansurname();
-            company.pandesignation();
-            company.panmobile();
-            company.panemail();
-            company.panplace();
+            associateCompanies.Pannumber();
+            associateCompanies.Tannumber();
+            associateCompanies.FullName();
+            associateCompanies.pansurname();
+            associateCompanies.pandesignation();
+            associateCompanies.panmobile();
+            associateCompanies.panemail();
+            associateCompanies.panplace();
             Thread.sleep(2000);
-            company.gstnumbr();
-            company.save();
+            associateCompanies.gstnumbr();
+            associateCompanies.save();
             Thread.sleep(3000);
-            company.savenext();
+            associateCompanies.savenext();
 
 
             // SMTP Details
             logger.logInfo("Entering SMTP Details");
             Thread.sleep(6000);
-            company.email();
-            company.passwrd();
-            company.hos();
+            associateCompanies.email();
+            associateCompanies.passwrd();
+            associateCompanies.hos();
             Thread.sleep(2000);
-            company.por();
-            company.Dropdown("465");
+            associateCompanies.por();
+            associateCompanies.Dropdown("465");
             Thread.sleep(2000);
-            company.save();
-            company.Saveclose();
+            associateCompanies.save();
+            associateCompanies.Saveclose();
             logger.logPass("shown as per given");
         } catch (Exception e) {
             logger.logFail("Login functionality for super admin is failed" + e.getMessage());
 
         }
     }
+ // Filtering parent company and click add btn
+        @Test(priority = 2)
+        public void Addasso_comp () throws InterruptedException, IOException {
+            try {
+
+                loginpage = new LoginPage(prop.getProperty("Superadmin"), prop.getProperty("password"));
+                home = new HomePage_SuperAdmin();
+                associateCompanies = new AssociateCompanies();
+                logger.logInfo("clicking on Associate companies in companies ");
+                home.NAvMenu("Companies");
+                associateCompanies.Associatecompaniess("Click the Associate Companies");
+               // Random randomGenerator = new Random();
+                //int randomInt = randomGenerator.nextInt(1000);
+                //String CompanyName = "Test Company" + randomInt;
+                associateCompanies.parent("Filpkart");
+                associateCompanies.Dropdown("Filpkart");
+                Thread.sleep(3000);
+                associateCompanies.actinbtn();
+                associateCompanies.addnew();
+                logger.logInfo("Entering Company Details");
+                associateCompanies.companycode("CompanyCode");
+                Thread.sleep(3000);
+                //company.copyAssociatecompany();
+                associateCompanies.companyname("CompanyName");
+                associateCompanies.businesstypedop("IT");
+                associateCompanies.Dropdown("IT");
+                associateCompanies.website("www.filpkartsales.com");
+                associateCompanies.scrollIntoView(associateCompanies.esttypedop);
+                Thread.sleep(5000);
+                associateCompanies.esttypedop("Factory");
+                associateCompanies.Dropdown("Factory");
+                Thread.sleep(3000);
+                associateCompanies.statusdop("Active");
+                associateCompanies.Dropdown("Active");
+                associateCompanies.empdop("1-100");
+                associateCompanies.Dropdown("1-100");
+                //Thread.sleep(3000);
+                // company.scrollIntoView(company.Logoupload);
+                associateCompanies.Logoupload("C:\\Users\\sathw\\OneDrive\\Pictures\\download (3).png");
+                Thread.sleep(5000);
+                associateCompanies.create();
+                Thread.sleep(2000);
+                assertTrue(home.CreatedSucees());
+                Thread.sleep(3000);
+                //company.save();
+                associateCompanies.savenxt();
+            } catch (Exception e) {
+                logger.logFail("Login functionality for super admin is failed" + e.getMessage());
+
+            }
+
+        }
+
     @AfterMethod
     public void tearDown() {
         driver.quit();

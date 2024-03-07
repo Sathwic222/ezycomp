@@ -1,6 +1,8 @@
 package com.automation.ezycomp.pageobjects;
 
 
+import com.automation.ezycomp.functionLabrary.ReportLog;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,11 +10,14 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.automation.ezycomp.base.TestBase;
 
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
+
 public class Locationmapping extends TestBase {
 
 
 
-
+    ReportLog logger;
 
 
 
@@ -126,7 +131,8 @@ public class Locationmapping extends TestBase {
     public void view(String Value) {
         view.click();
     }
-    
+
+  //  ---------------------------------------------
     public void Homepage() {
     	Homepage.click();
     }
@@ -145,6 +151,10 @@ public class Locationmapping extends TestBase {
     public void asscompdop(String Value) {
     	asscompdop.sendKeys(Value);
     }
+
+
+
+
     public void actionbtn() {
     	actionbtn.click();
     }
@@ -152,21 +162,39 @@ public class Locationmapping extends TestBase {
     	ActionsButtonAdd.click();
     }
     public void statedrop(String Value) {
-    	statedrop.sendKeys(Value);
+
+        statedrop.sendKeys(Value);
     }
     public void citydrop(String Value) {
     	citydrop.sendKeys(Value);
     }
-    public void locname(String Value) {
-        locname.click();
-        locname.clear();
-    	locname.sendKeys(Value);
+    public String locname(String value){
+        locname.sendKeys(value);
+        return value;
     }
-    public void loccode(String Value) {
-    	loccode.sendKeys(Value);
+    public String locname(){
+        Random randomGenerator = new Random();
+        int randomInt = randomGenerator.nextInt(1000);
+        String LocName = "Avatar"+randomInt;
+        locname.sendKeys("LocName");
+        return LocName;
     }
+
+    public String loccode(String value){
+        loccode.sendKeys(value);
+        return value;
+    }
+    public String locationcode (){
+        Random randomGenerator = new Random();
+        int randomInt = randomGenerator.nextInt(10);
+        String LocCode = "avtr"+randomInt;
+        loccode.sendKeys("LocCode");
+        return LocCode;
+    }
+
     public void conpername(String Value) {
-    	conpername.sendKeys(Value);
+
+        conpername.sendKeys(Value);
     }
     public void mobile(String Value) {
     	mobile.sendKeys(Value);
@@ -196,7 +224,43 @@ public class Locationmapping extends TestBase {
        public void view() {
            viewbtn.click();
        }
-   
+
+
+       public String createLocMapping(String CompanyName,String AssociateCompName){
+           Random randomGenerator = new Random();
+           int randomInt = randomGenerator.nextInt(1000);
+           String LocName = "Avatar" + randomInt;
+           logger.logInfo("Entering username and password");
+           Homepage();
+           Companieslist();
+           locmap();
+           driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+           compdop(CompanyName);
+           Dropdown(CompanyName);
+           driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+          asscompdop(AssociateCompName);
+          Dropdown(AssociateCompName);
+
+           driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+           actionbtn();
+           driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+           ActionsButtonAdd();
+           statedrop("Telangana");
+           Dropdown("Telangana");
+           driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+           citydrop("Hyderabad");
+           Dropdown("Hyderabad");
+
+           locname("");
+           loccode("");
+           conpername("munna");
+           mobile("7890123453");
+           email("sathwic222@gmail.com");
+           address("1-12,ravind colony,anderi,mumbai");
+         //  Thread.sleep(5000);
+          submitbtn();
+          return LocName;
+       }
 	
 }
     

@@ -1,16 +1,21 @@
 package com.automation.ezycomp.pageobjects;
 
 import com.automation.ezycomp.base.TestBase;
+import com.automation.ezycomp.functionLabrary.ReportLog;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.Random;
 
 
 public class AssociateCompanies extends TestBase {
 
+	ReportLog logger;
+	CompaniesAddnew company;
 
 	/// Sorting buttons
 	@FindBy(xpath="(.//div[@class='tabulator-arrow'])[1]")
@@ -73,9 +78,10 @@ public class AssociateCompanies extends TestBase {
 	WebElement ManageCompanies;
 
 	@FindBy(xpath="//span[text()='Associate Companies']")
-	WebElement Asscomp;
+	WebElement Associatecompanies;
 
-
+    @FindBy(xpath="(//input[@role='combobox'])[1]")
+	WebElement percompdrop;
 	@FindBy(xpath =".//input[@class='form-control']")
 	WebElement Search;
 
@@ -83,17 +89,20 @@ public class AssociateCompanies extends TestBase {
 	@FindBy(xpath=".//span[@title='download']")
 	WebElement Exportbtn;
 
-	@FindBy(xpath=".//button[@class='px-3 ms-auto text-nowrap btn btn-primary']")
-	WebElement addbtn;
+	@FindBy(xpath="//button[text()='Actions']")
+	WebElement Actionsbtn;
+
+	@FindBy(xpath="//span[@title='plus']")
+    WebElement addnew;
 
 
 	// Company Details---------------------------------
 
-	@FindBy(xpath=".//input[@class='form-control  text-uppercase']")
+	@FindBy(xpath="//input[@name='code']")
 	WebElement companycode;
 
 	@FindBy(xpath=".//input[@id='isAssociateCompany']")
-	WebElement Asscompany;
+	WebElement isAsscompany;
 
 	@FindBy(xpath="(//input[contains(@id,'react-select-')])[1]")
 	WebElement Parentcompdop;
@@ -112,7 +121,7 @@ public class AssociateCompanies extends TestBase {
 		DropDownValue(value).click();
 	}
 
-	@FindBy(xpath="//input[@id='react-select-3-input']")
+	@FindBy(xpath="(//input[@role='combobox'])[2]")
 	WebElement businesstypedop;
 
 	@FindBy(xpath=".//input[@placeholder='Enter Website']")
@@ -136,15 +145,15 @@ public class AssociateCompanies extends TestBase {
 		Logoupload.sendKeys(value);
 	}
 
-	@FindBy(xpath=".//button[@class='px-4 ms-3 btn btn-primary']")
+	@FindBy(xpath="//button[text()='Create']")
 	WebElement create;
 
 	// @FindBy(xpath=".//button[@class=\"btn btn-outline-secondary px-4 btn btn-outline-secondary\"]")
 	//  WebElement backtolist;
 
-	@FindBy(xpath="//button[@class='px-4 btn btn-primary']")
+	@FindBy(xpath="//button[text()='Save']")
 	WebElement save;
-	@FindBy(xpath="//button[@class='px-4 ms-3 btn btn-primary']")
+	@FindBy(xpath="//button[text()='Save & Next']")
 	WebElement savenxtbtn;
 
 	// SPOC Details webelements
@@ -152,13 +161,13 @@ public class AssociateCompanies extends TestBase {
 	@FindBy(xpath=".//textarea[@name='companyAddress']")
 	WebElement address;
 
-	@FindBy(xpath=".//input[@id='react-select-7-input']")
+	@FindBy(xpath="(//input[@role='combobox'])[1]")
 	WebElement statedop;
 
-	@FindBy(xpath=".//input[@id='react-select-8-input']")
+	@FindBy(xpath="(//input[@role='combobox'])[2]")
 	WebElement citydop;
 
-	@FindBy(xpath=".//input[@id='react-select-9-input']")
+	@FindBy(xpath="(//input[@role='combobox'])[3]")
 	WebElement countrydop;
 
 	@FindBy(xpath=".//input[@name='contactNumber']")
@@ -295,7 +304,8 @@ public class AssociateCompanies extends TestBase {
 	WebElement Cancel;
 
 
-
+    @FindBy(xpath="(//input[@role='combobox'])[1]")
+	WebElement compdorp ;
 
 
 
@@ -380,29 +390,42 @@ public class AssociateCompanies extends TestBase {
 		ManageCompanies.click();
 	}
 
-	public void asscomp() {
-		Asscomp.click();
+	public void Associatecompaniess(String value){
+		Associatecompanies.click();
 	}
 
+
+
+	public void parent(String Value){
+		percompdrop.sendKeys(Value);
+		percompdrop.click();
+	}
 	// SEARCH //----------
 
 	public void Search(String Value) {
 		Search.sendKeys(Value);
 	}
 
-	public void Exportbtn() {
+	public void Exportbtn () {
 		Exportbtn.click();
 	}
-	public void addbutton() {
-		addbtn.click();
+
+	public void actinbtn(){
+		Actionsbtn.click();
+	}
+	public void addnew() {
+		addnew.click();
 	}
 
 	public void companycode(String Visa) {
-		companycode.sendKeys(Visa);
+		Random randomGenerator = new Random();
+		int randomInt = randomGenerator.nextInt(100);
+		String CompanyCode = "dec"+ randomInt;
+		companycode.sendKeys(CompanyCode);
 	}
 
-	public void Associatecompany() {
-		Asscompany.click();
+	public void isassociatecomp() {
+		isAsscompany.click();
 	}
 	public void Parentcompdop(String Value){
 		Parentcompdop.sendKeys(Value);
@@ -412,9 +435,10 @@ public class AssociateCompanies extends TestBase {
 	}
 
 	public void companyname(String Value) {
-		//companyname.click();
-		//companyname.clear();
-		companyname.sendKeys(Value);
+		Random randomGenerator = new Random();
+		int randomInt = randomGenerator.nextInt(1000);
+		String CompanyName = "Dev Company"+ randomInt;
+		companyname.sendKeys(CompanyName);
 	}
 
 	public void businesstypedop(String Value) {
@@ -574,9 +598,54 @@ public class AssociateCompanies extends TestBase {
 		save.click();
 
 	}
+	public void compdop(String value){
+		compdorp.sendKeys(value);
+	}
 
 	public void Saveclose() {
 		Saveclose.click();
+	}
+
+
+	public String CreateAssociateCompany(String CompName) throws InterruptedException {
+		Random randomGenerator = new Random();
+		int randomInt = randomGenerator.nextInt(100);
+		String AssociateCompanyName = "Associate Comp"+ randomInt;
+
+		company = new CompaniesAddnew();
+		//company.addbutton();
+
+		company.companycode("bsal");
+		company.Associatecompany();
+		Thread.sleep(3000);
+		Parentcompdop.click();
+		Thread.sleep(2000);
+		company.Parentcompdop(CompName);
+		Thread.sleep(5000);
+		company.Dropdown(CompName);
+		//company.copyAssociatecompany();
+		company.companyname(AssociateCompanyName);
+		company.businesstypedop("IT");
+		company.Dropdown("IT");
+		company.website("www.filpkartsales.com");
+		company.scrollIntoView(esttypedop);
+		Thread.sleep(5000);
+		esttypedop("Factory");
+		company.Dropdown("Factory");
+		Thread.sleep(3000);
+		statusdop("Active");
+		Dropdown("Active");
+		empdop("1-100");
+		company.Dropdown("1-100");
+		//Thread.sleep(3000);
+		// company.scrollIntoView(company.Logoupload);
+		company.Logoupload("C:\\Users\\sathw\\OneDrive\\Pictures\\download (3).png");
+		Thread.sleep(5000);
+		company.create();
+		Thread.sleep(2000);
+
+
+		return AssociateCompanyName;
 	}
 
 }

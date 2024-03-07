@@ -16,7 +16,7 @@ public class Companies {
     @FindBy(xpath ="(.//div[@class='d-flex flex-row align-items-center w-100'])[2]")
     WebElement Companieslist;
 
-    @FindBy(xpath ="(.//span[@class=\"sidenav-item-label\"])[10]")
+    @FindBy(xpath ="(.//span[@class='sidenav-item-label'])[10]")
     WebElement ManageCompanies;
 
     @FindBy(xpath =".//input[@class='form-control']")

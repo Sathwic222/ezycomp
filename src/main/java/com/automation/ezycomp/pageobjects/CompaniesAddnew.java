@@ -1,17 +1,18 @@
 package com.automation.ezycomp.pageobjects;
 
 
+import com.automation.ezycomp.base.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import com.automation.ezycomp.base.TestBase;
+import java.util.Random;
 
 public class CompaniesAddnew extends TestBase {
-	
-	
+
+
 	/// Sorting buttons
 	 @FindBy(xpath="(.//div[@class='tabulator-arrow'])[1]")
 	  WebElement compname;
@@ -83,19 +84,22 @@ public class CompaniesAddnew extends TestBase {
     @FindBy(xpath=".//span[@title='download']")
      WebElement Exportbtn;
 
-	@FindBy(xpath=".//button[@class='px-3 ms-auto text-nowrap btn btn-primary']")
-	  WebElement addbtn;
-	
+	@FindBy(xpath="//button[normalize-space()='Add New']")
+	  WebElement addnew;
+
 	
 	// Company Details---------------------------------
 	
 	@FindBy(xpath=".//input[@class='form-control  text-uppercase']")
 	  WebElement companycode;
-	
+
+	@FindBy(xpath=".//input[@name='code']")
+	WebElement companycd;
+
 	@FindBy(xpath=".//input[@id='isAssociateCompany']")
 	  WebElement Asscompany;
 
-	@FindBy(xpath="//span[@id='react-select-60-live-region']")
+	@FindBy(xpath="(//input[@role='combobox'])[1]")
 	WebElement Parentcompdop;
 	
 	 @FindBy(xpath=".//input[@id='copyCompany']")
@@ -395,13 +399,22 @@ public class CompaniesAddnew extends TestBase {
 	public void Exportbtn() {
 		Exportbtn.click();
 	}
-    public void addbutton() {
-    	addbtn.click();
+    public void addneww() {
+    	addnew.click();
     }
-    
-    public void companycode(String Visa) {
-    	companycode.sendKeys(Visa);
+
+    public String companycode(String value) {
+    	companycode.sendKeys(value);
+		return value;
     }
+	public String companycode(){
+		Random randomGenerator = new Random();
+		int randomInt = randomGenerator.nextInt(10);
+		String CompanyCode ="ts"+randomInt;
+		companycode.sendKeys(CompanyCode);
+		return CompanyCode;
+
+	}
     
     public void Associatecompany() {
     	Asscompany.click();
@@ -413,15 +426,58 @@ public class CompaniesAddnew extends TestBase {
     	copyAsscompany.click();
     }
     
-    public void companyname(String Value) {
-		companyname.click();
-		companyname.clear();
-    	companyname.sendKeys(Value);
-    }
+    public String companyname(String Value) {
+		//companyname.click();
+		//companyname.clear();
+		companyname.sendKeys(Value);
+		return Value;
+	}
+	public String companyname() {
+		//companyname.click();
+		//companyname.clear();
+
+		//Random randomGenerator = new Random();
+		//int randomInt = randomGenerator.nextInt(10);
+		//String CompanyCode ="ts"+randomInt;
+		//companycode.sendKeys(CompanyCode);
+		//return CompanyCode;
+
+		Random randomGenerator = new Random();
+		int randomInt = randomGenerator.nextInt(1000);
+		String CompanyName = "Test Company"+ randomInt;
+		companyname.sendKeys(CompanyName);
+		return CompanyName;
+	}
+
+	public String CreateCompany() throws InterruptedException {
+		Random randomGenerator = new Random();
+		int randomInt = randomGenerator.nextInt(1000);
+		String CompanyName = "Test Company"+ randomInt;
+		String CompanyCode = "ts"+ randomInt;
+		addneww();
+		Thread.sleep(5000);
+		companycd.sendKeys(CompanyCode);
+		companyname.sendKeys(CompanyName);
+		businesstypedop("IT");
+		Dropdown("IT");
+		website("www.virtusa.com");
+		esttypedop();
+		Dropdown("Factory");
+		statusdop();
+		Dropdown("Active");
+		empdop();
+		Dropdown("1-100");
+		scrollIntoView(Logoupload);
+		Logoupload("C:\\Users\\sathw\\OneDrive\\Pictures\\download (3).png");
+		Thread.sleep(5000);
+		create();
+		Thread.sleep(3000);
+		return CompanyName;
+	}
 
     public void businesstypedop(String Value) {
-		businesstypedop.click();
-    	businesstypedop.clear();
+		//businesstypedop.click();
+    	//businesstypedop.clear();
 		businesstypedop.sendKeys(Value);
     }
     

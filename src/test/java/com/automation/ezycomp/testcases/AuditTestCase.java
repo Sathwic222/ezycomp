@@ -54,7 +54,7 @@ public class AuditTestCase extends TestBase {
 	        Thread.sleep(3000);
 	        
 	        audit.Auditschedule();
-
+			Thread.sleep(3000);
 	        audit.companydop("Filpkart");
 	        audit.Dropdown("Filpkart");
             Thread.sleep(3000);
@@ -68,8 +68,9 @@ public class AuditTestCase extends TestBase {
 
 	       // audit.Dropdown("Display,Returns,Audit");
 
-	        home.scrollIntoView(audit.month);
-	        audit.month("Feb, 2024 ~ Mar, 2024");
+	        home.scrollIntoView(audit.monthbox);
+			Thread.sleep(3000);
+	        audit.month();
 
 	        audit.Exportbtn();
 			Thread.sleep(5000);
