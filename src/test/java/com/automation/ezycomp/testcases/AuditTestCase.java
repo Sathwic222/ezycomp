@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.concurrent.TimeUnit;
 
+import com.automation.ezycomp.utils.ExcelOperations;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
@@ -49,10 +50,10 @@ public class AuditTestCase extends TestBase {
 			Thread.sleep(2000);
 			audit.Homepage();
 			//audit.NavDoubleright();
-			
+
 	        audit.Auditmanagement();
 	        Thread.sleep(3000);
-	        
+
 	        audit.Auditschedule();
 			Thread.sleep(3000);
 	        audit.companydop("Filpkart");
@@ -74,6 +75,17 @@ public class AuditTestCase extends TestBase {
 
 	        audit.Exportbtn();
 			Thread.sleep(5000);
+
+			String path = System.getProperty("user.dir") + "\\externalFiles\\downloadFiles\\FILP-BSAL-TG-HYD-AUDO.xlsx";
+			ExcelOperations ex = new ExcelOperations(path);
+			String sheetName = "Activities";
+			int rowcount = ex.getRowcount(sheetName);
+			int colcount = ex.getColcount(sheetName);
+
+			for(int i = 1; i<=rowcount; i++) {
+				ex.writeSingleCellVCalue(path, sheetName, i, 18, "08-03-2024");
+				ex.writeSingleCellVCalue(path, sheetName, i, 19, "18-03-2024");
+			}
 	        
 	        logger.logPass("Audit Schedule will generated for month is passed");
 		} catch (Exception e) {

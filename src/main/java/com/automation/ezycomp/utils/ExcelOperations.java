@@ -97,6 +97,30 @@ public class ExcelOperations {
 
     }
 
+    public void writeMappingCellVCalue(String path, String userSheetname,int row,int[] col,String[] cellValue) throws Exception {
+        XSSFSheet Sheet = workbook.getSheet(userSheetname);
+        XSSFRow wsRow = Sheet.getRow(row);
+        for (int i = 0; i < col.length; i++) {
+            XSSFCell wsCol = wsRow.createCell(col[i]);
+            wsCol.setCellValue(cellValue[i]);
+        }
+        FileOutputStream out = new FileOutputStream(path);
+        workbook.write(out);
+        out.close();
+    }
+
+
+    public void writeSingleCellVCalue(String path, String userSheetname,int row,int col,String cellValue) throws Exception {
+        XSSFSheet Sheet = workbook.getSheet(userSheetname);
+        XSSFRow wsRow = Sheet.getRow(row);
+        XSSFCell wsCol = wsRow.createCell(col);
+        wsCol.setCellValue(cellValue);
+        FileOutputStream out = new FileOutputStream(path);
+        workbook.write(out);
+        out.close();
+    }
+
+
     //	Save and Close the file after operations
     public void saveAndClose(String path) throws Exception {
         FileOutputStream fos = new FileOutputStream(path);
